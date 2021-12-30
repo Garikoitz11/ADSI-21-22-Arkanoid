@@ -102,7 +102,7 @@ public class Menu extends JFrame {
 			btnJugar.setFont(new Font("Tahoma", Font.PLAIN, 30));
 			btnJugar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					new Arkanoid().run();
+					new Arkanoid().run();//Arreglar
 				}
 			});
 		}

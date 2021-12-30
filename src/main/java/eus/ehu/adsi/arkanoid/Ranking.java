@@ -41,13 +41,13 @@ public class Ranking extends JFrame {
 		
 		modeloParticular = new DefaultTableModel();
 		modeloParticular.addColumn("Dificultad");
-		modeloParticular.addColumn("Puntuación");
+		modeloParticular.addColumn("Puntuaciï¿½n");
 		getTabla().setModel(modeloParticular);
 		
 		modeloGlobal = new DefaultTableModel();
 		modeloGlobal.addColumn("Usuario");
 		modeloGlobal.addColumn("Dificultad");
-		modeloGlobal.addColumn("Puntuación");
+		modeloGlobal.addColumn("Puntuaciï¿½n");
 		getTablaGlobal().setModel(modeloGlobal);
 		
 	}
@@ -131,7 +131,7 @@ public class Ranking extends JFrame {
 			btnVolver = new JButton("Volver");
 			btnVolver.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					
+					//Terminar
 				}
 			});
 		}
