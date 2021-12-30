@@ -28,7 +28,6 @@ public class Ranking extends JFrame {
 	private JButton btnVolver;
 	DefaultTableModel modeloParticular;
 	DefaultTableModel modeloGlobal;
-	public boolean activo= true;
 
 	/**
 	 * Launch the application.
@@ -132,7 +131,7 @@ public class Ranking extends JFrame {
 			btnVolver = new JButton("Volver");
 			btnVolver.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					activo=false;
+					
 				}
 			});
 		}
