@@ -13,7 +13,7 @@ public class App {
 		
 	}
 	
-	public static void EME() {
+	public static void EME() { //para futuro
 		arkanoid.setVisible(false);
 		menu.setVisible(true);
 		

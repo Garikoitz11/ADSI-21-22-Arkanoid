@@ -17,7 +17,7 @@ public class Menu extends JFrame {
 	private JPanel contentPane;
 	private JButton btnJugar;
 	private JButton btnRanking;
-	private Boolean activo= false;
+	private Boolean activo= false; //comprobador para App
 
 	/**
 	 * Launch the application.
