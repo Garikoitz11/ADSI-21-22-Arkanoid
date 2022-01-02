@@ -17,6 +17,7 @@ public class Menu extends JFrame {
 	private JPanel contentPane;
 	private JButton btnJugar;
 	private JButton btnRanking;
+	private Boolean activo= false;
 
 	/**
 	 * Launch the application.
@@ -102,7 +103,7 @@ public class Menu extends JFrame {
 			btnJugar.setFont(new Font("Tahoma", Font.PLAIN, 30));
 			btnJugar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					new Arkanoid().run();//Arreglar
+					activo=true;
 				}
 			});
 		}
@@ -125,6 +126,10 @@ public class Menu extends JFrame {
 		Ranking ranking= new Ranking();
 		ranking.setVisible(true);
 		this.setVisible(false);
+	}
+	
+	public boolean getActivo() {
+		return activo;
 	}
 
 }
