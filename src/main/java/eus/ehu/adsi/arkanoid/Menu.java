@@ -123,9 +123,9 @@ public class Menu extends JFrame {
 	}
 	
 	public void abrirRanking() {
-		Ranking ranking= new Ranking();
+		Ranking ranking=new Ranking();
 		ranking.setVisible(true);
-		this.setVisible(false);
+		
 	}
 	
 	public boolean getActivo() {
