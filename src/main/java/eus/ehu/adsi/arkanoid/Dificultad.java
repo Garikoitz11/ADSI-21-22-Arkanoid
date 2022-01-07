@@ -21,6 +21,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
+import java.awt.Color;
 
 public class Dificultad extends JFrame {
 
@@ -46,8 +47,10 @@ public class Dificultad extends JFrame {
 		
 	private void initialize() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 459, 364);
+		setBounds(500, 210, 459, 364);
+		setResizable(false);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(238, 130, 238));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -60,6 +63,7 @@ public class Dificultad extends JFrame {
 	private JPanel getTítulo() {
 		if (Título == null) {
 			Título = new JPanel();
+			Título.setBackground(new Color(255, 218, 185));
 			Título.add(getLblNewLabel());
 		}
 		return Título;
@@ -67,6 +71,7 @@ public class Dificultad extends JFrame {
 	private JPanel getContenido() {
 		if (Contenido == null) {
 			Contenido = new JPanel();
+			Contenido.setBackground(new Color(255, 218, 185));
 			GroupLayout gl_Contenido = new GroupLayout(Contenido);
 			gl_Contenido.setHorizontalGroup(
 				gl_Contenido.createParallelGroup(Alignment.TRAILING)
@@ -99,6 +104,7 @@ public class Dificultad extends JFrame {
 	private JPanel getVolver() {
 		if (Volver == null) {
 			Volver = new JPanel();
+			Volver.setBackground(new Color(255, 218, 185));
 			GroupLayout gl_Volver = new GroupLayout(Volver);
 			gl_Volver.setHorizontalGroup(
 				gl_Volver.createParallelGroup(Alignment.LEADING)
@@ -148,11 +154,10 @@ public class Dificultad extends JFrame {
 	private JTextPane getTxtpnModificaLaDificultad() {
 		if (txtpnModificaLaDificultad == null) {
 			txtpnModificaLaDificultad = new JTextPane();
-			txtpnModificaLaDificultad.setBackground(SystemColor.menu);
+			txtpnModificaLaDificultad.setBackground(new Color(255, 255, 240));
 			txtpnModificaLaDificultad.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			txtpnModificaLaDificultad.setText("Modifica la dificultad aumentando o disminuyendo la velocidad de la bola y el n\u00FAmero de bricks en pantalla");
 		}
 		return txtpnModificaLaDificultad;
 	}
-
 }

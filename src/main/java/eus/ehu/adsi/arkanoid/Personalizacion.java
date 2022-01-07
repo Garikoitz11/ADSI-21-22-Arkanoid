@@ -21,6 +21,12 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
+import java.awt.GridLayout;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.RowSpec;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.Color;
 
 public class Personalizacion extends JFrame {
 
@@ -28,11 +34,20 @@ public class Personalizacion extends JFrame {
 	private JPanel Título;
 	private JPanel Contenido;
 	private JPanel Volver;
-	private JLabel lblNewLabel;
-	private JLabel lblNewLabel_1;
+	private JLabel Titulillo;
+	private JLabel ColordePaddle;
+	private JLabel Tamañodebola;
+	private JLabel Colordefondo;
+	private JLabel Colordebola;
 	private JComboBox comboBox;
-	private JButton btnNewButton;
-	private JTextPane txtpnModificaLaDificultad;
+	private JLabel Colordeladrillo;
+	private JLabel Sonidos;
+	private JComboBox comboBox_1;
+	private JComboBox comboBox_2;
+	private JComboBox comboBox_3;
+	private JComboBox comboBox_4;
+	private JComboBox comboBox_5;
+	private JButton confirmar;
 	/**
 	 * Launch the application.
 	 */
@@ -41,13 +56,17 @@ public class Personalizacion extends JFrame {
 	 * Create the frame.
 	 */
 	public Personalizacion() {
+		setBackground(new Color(221, 160, 221));
 		initialize();
 	}
 		
 	private void initialize() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 459, 364);
+		setBounds(500, 200, 459, 378);
+		setResizable(false);
 		contentPane = new JPanel();
+		
+		contentPane.setBackground(new Color(238, 130, 238));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -60,37 +79,68 @@ public class Personalizacion extends JFrame {
 	private JPanel getTítulo() {
 		if (Título == null) {
 			Título = new JPanel();
-			Título.add(getLblNewLabel());
+			Título.setBackground(new Color(255, 218, 185));
+			Título.add(getTitulillo());
 		}
 		return Título;
 	}
 	private JPanel getContenido() {
 		if (Contenido == null) {
 			Contenido = new JPanel();
+			Contenido.setBackground(new Color(255, 218, 185));
 			GroupLayout gl_Contenido = new GroupLayout(Contenido);
 			gl_Contenido.setHorizontalGroup(
-				gl_Contenido.createParallelGroup(Alignment.TRAILING)
-					.addGroup(Alignment.LEADING, gl_Contenido.createSequentialGroup()
-						.addGap(70)
-						.addComponent(getLblNewLabel_1(), GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
-						.addGap(67)
-						.addComponent(getComboBox(), 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addGap(84))
-					.addGroup(Alignment.LEADING, gl_Contenido.createSequentialGroup()
-						.addGap(92)
-						.addComponent(getTxtpnModificaLaDificultad(), GroupLayout.PREFERRED_SIZE, 248, GroupLayout.PREFERRED_SIZE)
-						.addContainerGap(93, Short.MAX_VALUE))
+				gl_Contenido.createParallelGroup(Alignment.LEADING)
+					.addGroup(gl_Contenido.createSequentialGroup()
+						.addGroup(gl_Contenido.createParallelGroup(Alignment.LEADING)
+							.addGroup(gl_Contenido.createSequentialGroup()
+								.addComponent(getColordefondo(), GroupLayout.PREFERRED_SIZE, 224, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(getComboBox_1(), GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE))
+							.addGroup(gl_Contenido.createSequentialGroup()
+								.addComponent(getTamañodebola(), GroupLayout.PREFERRED_SIZE, 224, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(getComboBox_1_2(), GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE))
+							.addGroup(gl_Contenido.createSequentialGroup()
+								.addComponent(getColordebola(), GroupLayout.PREFERRED_SIZE, 224, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(getComboBox_2_1(), GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE))
+							.addGroup(gl_Contenido.createSequentialGroup()
+								.addComponent(getColordePaddle(), GroupLayout.PREFERRED_SIZE, 224, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(getComboBox_3_1(), GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE))
+							.addGroup(gl_Contenido.createSequentialGroup()
+								.addComponent(getSonidos(), GroupLayout.PREFERRED_SIZE, 224, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(getComboBox_4_1(), GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE))
+							.addGroup(gl_Contenido.createSequentialGroup()
+								.addComponent(getColordeladrillo(), GroupLayout.PREFERRED_SIZE, 224, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(getComboBox_5(), GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE)))
+						.addGap(83))
 			);
 			gl_Contenido.setVerticalGroup(
-				gl_Contenido.createParallelGroup(Alignment.TRAILING)
+				gl_Contenido.createParallelGroup(Alignment.LEADING)
 					.addGroup(gl_Contenido.createSequentialGroup()
-						.addGap(22)
-						.addComponent(getTxtpnModificaLaDificultad(), GroupLayout.PREFERRED_SIZE, 90, GroupLayout.PREFERRED_SIZE)
-						.addGap(18)
 						.addGroup(gl_Contenido.createParallelGroup(Alignment.BASELINE)
-							.addComponent(getComboBox(), GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addComponent(getLblNewLabel_1(), GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE))
-						.addContainerGap())
+							.addComponent(getColordefondo(), GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
+							.addComponent(getComboBox_1(), GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addGroup(gl_Contenido.createParallelGroup(Alignment.BASELINE)
+							.addComponent(getTamañodebola(), GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
+							.addComponent(getComboBox_1_2(), GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_Contenido.createParallelGroup(Alignment.BASELINE)
+							.addComponent(getColordebola(), GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
+							.addComponent(getComboBox_2_1(), GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_Contenido.createParallelGroup(Alignment.BASELINE)
+							.addComponent(getColordePaddle(), GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
+							.addComponent(getComboBox_3_1(), GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_Contenido.createParallelGroup(Alignment.BASELINE)
+							.addComponent(getSonidos(), GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
+							.addComponent(getComboBox_4_1(), GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_Contenido.createParallelGroup(Alignment.BASELINE)
+							.addComponent(getColordeladrillo(), GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
+							.addComponent(getComboBox_5(), GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 			);
 			Contenido.setLayout(gl_Contenido);
 		}
@@ -99,60 +149,126 @@ public class Personalizacion extends JFrame {
 	private JPanel getVolver() {
 		if (Volver == null) {
 			Volver = new JPanel();
+			Volver.setBackground(new Color(255, 218, 185));
 			GroupLayout gl_Volver = new GroupLayout(Volver);
 			gl_Volver.setHorizontalGroup(
-				gl_Volver.createParallelGroup(Alignment.LEADING)
-					.addGroup(gl_Volver.createSequentialGroup()
-						.addGap(170)
-						.addComponent(getBtnNewButton(), GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addGap(184))
+				gl_Volver.createParallelGroup(Alignment.TRAILING)
+					.addGroup(Alignment.LEADING, gl_Volver.createSequentialGroup()
+						.addGap(176)
+						.addComponent(getConfirmar(), GroupLayout.PREFERRED_SIZE, 105, GroupLayout.PREFERRED_SIZE)
+						.addContainerGap(168, Short.MAX_VALUE))
 			);
 			gl_Volver.setVerticalGroup(
-				gl_Volver.createParallelGroup(Alignment.LEADING)
+				gl_Volver.createParallelGroup(Alignment.TRAILING)
 					.addGroup(gl_Volver.createSequentialGroup()
-						.addComponent(getBtnNewButton(), GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(getConfirmar())
 						.addContainerGap())
 			);
 			Volver.setLayout(gl_Volver);
 		}
 		return Volver;
 	}
-	private JLabel getLblNewLabel() {
-		if (lblNewLabel == null) {
-			lblNewLabel = new JLabel("Seleccionar Dificultad");
-			lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 30));
+	private JLabel getTitulillo() {
+		if (Titulillo == null) {
+			Titulillo = new JLabel("PERSONALIZACION");
+			Titulillo.setFont(new Font("Tahoma", Font.BOLD, 30));
 		}
-		return lblNewLabel;
+		return Titulillo;
 	}
-	private JLabel getLblNewLabel_1() {
-		if (lblNewLabel_1 == null) {
-			lblNewLabel_1 = new JLabel("Dificultad");
-			lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-			lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 15));
+	private JLabel getColordePaddle() {
+		if (ColordePaddle == null) {
+			ColordePaddle = new JLabel("Color de Paddle");
+			ColordePaddle.setHorizontalAlignment(SwingConstants.RIGHT);
+			ColordePaddle.setFont(new Font("Dialog", Font.BOLD, 12));
 		}
-		return lblNewLabel_1;
+		return ColordePaddle;
 	}
-	private JComboBox getComboBox() {
+	private JLabel getTamañodebola() {
+		if (Tamañodebola == null) {
+			Tamañodebola = new JLabel("Tamaño de bola");
+			Tamañodebola.setHorizontalAlignment(SwingConstants.RIGHT);
+		}
+		return Tamañodebola;
+	}
+	private JLabel getColordefondo() {
+		if (Colordefondo == null) {
+			Colordefondo = new JLabel("Color de fondo");
+			Colordefondo.setHorizontalAlignment(SwingConstants.RIGHT);
+		}
+		return Colordefondo;
+	}
+	private JLabel getColordebola() {
+		if (Colordebola == null) {
+			Colordebola = new JLabel("Color de bola");
+			Colordebola.setHorizontalAlignment(SwingConstants.RIGHT);
+		}
+		return Colordebola;
+	}
+	private JComboBox getComboBox_1() {
 		if (comboBox == null) {
 			comboBox = new JComboBox();
-			comboBox.setModel(new DefaultComboBoxModel(new String[] {"1. Facil", "2. Normal", "3. Dificil"}));
+			comboBox.setModel(new DefaultComboBoxModel(new String[] {"Rojo", "Azul", "Verde", "Amarillo", "Blanco", "Negro"}));
 		}
 		return comboBox;
 	}
-	private JButton getBtnNewButton() {
-		if (btnNewButton == null) {
-			btnNewButton = new JButton("Confirmar");
+	private JLabel getColordeladrillo() {
+		if (Colordeladrillo == null) {
+			Colordeladrillo = new JLabel("Color de ladrillo");
+			Colordeladrillo.setHorizontalAlignment(SwingConstants.RIGHT);
 		}
-		return btnNewButton;
+		return Colordeladrillo;
 	}
-	private JTextPane getTxtpnModificaLaDificultad() {
-		if (txtpnModificaLaDificultad == null) {
-			txtpnModificaLaDificultad = new JTextPane();
-			txtpnModificaLaDificultad.setBackground(SystemColor.menu);
-			txtpnModificaLaDificultad.setFont(new Font("Tahoma", Font.PLAIN, 15));
-			txtpnModificaLaDificultad.setText("Modifica la dificultad aumentando o disminuyendo la velocidad de la bola y el n\u00FAmero de bricks en pantalla");
+	private JLabel getSonidos() {
+		if (Sonidos == null) {
+			Sonidos = new JLabel("Sonidos");
+			Sonidos.setHorizontalAlignment(SwingConstants.RIGHT);
 		}
-		return txtpnModificaLaDificultad;
+		return Sonidos;
 	}
-
+	private JComboBox getComboBox_1_2() {
+		if (comboBox_1 == null) {
+			comboBox_1 = new JComboBox();
+			comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Pequeña", "Mediana", "Grande"}));
+		}
+		return comboBox_1;
+	}
+	private JComboBox getComboBox_2_1() {
+		if (comboBox_2 == null) {
+			comboBox_2 = new JComboBox();
+			comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"Rojo", "Verde", "Azul", "AMarillo", "Blanco", "Negro"}));
+		}
+		return comboBox_2;
+	}
+	private JComboBox getComboBox_3_1() {
+		if (comboBox_3 == null) {
+			comboBox_3 = new JComboBox();
+			comboBox_3.setModel(new DefaultComboBoxModel(new String[] {"Rojo", "Azul", "Verde", "Amarillo", "Blanco", "Negro"}));
+		}
+		return comboBox_3;
+	}
+	private JComboBox getComboBox_4_1() {
+		if (comboBox_4 == null) {
+			comboBox_4 = new JComboBox();
+			comboBox_4.setModel(new DefaultComboBoxModel(new String[] {"Wii Sport", "Mario Bross"}));
+		}
+		return comboBox_4;
+	}
+	private JComboBox getComboBox_5() {
+		if (comboBox_5 == null) {
+			comboBox_5 = new JComboBox();
+			comboBox_5.setModel(new DefaultComboBoxModel(new String[] {"Rojo", "Azul", "Verde", "Amarillo", "Blanco", "Negro"}));
+		}
+		return comboBox_5;
+	}
+	private JButton getConfirmar() {
+		if (confirmar == null) {
+			confirmar = new JButton("Confirmar");
+			confirmar.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+				}
+			});
+		}
+		return confirmar;
+	}
 }
