@@ -17,6 +17,8 @@ public class Menu extends JFrame {
 	private JPanel contentPane;
 	private JButton btnJugar;
 	private JButton btnRanking;
+	private JButton btnDificultad;
+	private JButton btnPersonalizacion;
 	private Boolean activo= false; //comprobador para App
 
 	/**
@@ -65,11 +67,9 @@ public class Menu extends JFrame {
 		JPanel panel_2 = new JPanel();
 		panel_1.add(panel_2, BorderLayout.CENTER);
 		
-		JButton btnDificultad = new JButton("Elegir Dificultad");
-		panel_2.add(btnDificultad);
+		panel_2.add(getBtnDificultad());
 		
-		JButton btnPersonalizacion = new JButton("Personalizacion");
-		panel_2.add(btnPersonalizacion);
+		panel_2.add(getBtnPersonalizacion());
 		
 		JPanel panel_3 = new JPanel();
 		panel_1.add(panel_3, BorderLayout.SOUTH);
@@ -110,6 +110,43 @@ public class Menu extends JFrame {
 		return btnJugar;
 	}
 	
+	private JButton getBtnDificultad() {
+		if (btnDificultad == null) {
+			btnDificultad = new JButton("Elegir Dificultad");
+			btnDificultad.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					abrirDificultad();
+				}
+			});
+		}
+		return btnDificultad;
+	}
+	
+	public void abrirDificultad() {
+		Dificultad dificultad=new Dificultad();
+		dificultad.setVisible(true);
+		
+	}
+	
+	private JButton getBtnPersonalizacion() {
+		if (btnPersonalizacion == null) {
+			btnPersonalizacion = new JButton("Personalizar");
+			btnPersonalizacion.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					abrirPersonalizacion();
+				}
+			});
+		}
+		return btnPersonalizacion;
+	}
+	
+	public void abrirPersonalizacion() {
+		Personalizacion personalizacion=new Personalizacion();
+		personalizacion.setVisible(true);
+		
+	}
+
+
 	private JButton getBtnRanking() {
 		if (btnRanking == null) {
 			btnRanking = new JButton("Consultar Ranking");
