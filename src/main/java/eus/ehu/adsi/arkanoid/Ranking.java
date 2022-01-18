@@ -26,6 +26,8 @@ public class Ranking extends JFrame {
 	private JLabel lblNewLabel;
 	private JComboBox comboBox;
 	private JButton btnVolver;
+	
+	//Atributos para las tablas
 	DefaultTableModel modeloParticular;
 	DefaultTableModel modeloGlobal;
 	/**
@@ -38,15 +40,17 @@ public class Ranking extends JFrame {
 	public Ranking() {
 		initialize();
 		
+		//Tabla para ranking personal
 		modeloParticular = new DefaultTableModel();
 		modeloParticular.addColumn("Dificultad");
-		modeloParticular.addColumn("Puntuaci�n");
+		modeloParticular.addColumn("Puntuacion");
 		getTabla().setModel(modeloParticular);
 		
+		//Tabla para ranking global
 		modeloGlobal = new DefaultTableModel();
 		modeloGlobal.addColumn("Usuario");
 		modeloGlobal.addColumn("Dificultad");
-		modeloGlobal.addColumn("Puntuaci�n");
+		modeloGlobal.addColumn("Puntuacion");
 		getTablaGlobal().setModel(modeloGlobal);
 		
 	}
@@ -139,6 +143,13 @@ public class Ranking extends JFrame {
 	
 	public void volver() {
 		this.setVisible(false);
+	}
+	
+	//Empiece Tablas
+	private void actualizarRanking(int dificultad) {
+		
+		
+		
 	}
 
 }
