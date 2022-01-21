@@ -1,0 +1,5 @@
+AVISO LIBRERIAS AVISO
+
+Librerias Importantes para el desarrollo del Arkanoid. Utiles para realizar el JSON y acceder a la BD.
+
+Si no le funcionan las consultas a base de datos o json, quere decir que no cuenta con ellas. Añadelas dando click derecho > Build Path > Add to Build Path
