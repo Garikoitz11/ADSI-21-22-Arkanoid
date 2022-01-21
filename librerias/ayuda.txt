@@ -1,4 +1,4 @@
-AVISO LIBRERIAS
+AVISO LIBRERIAS AVISO
 
 Librerias Importantes para el desarrollo del Arkanoid. Utiles para realizar el JSON y acceder a la BD.
 
