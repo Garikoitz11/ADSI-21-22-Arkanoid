@@ -20,6 +20,9 @@ public class App {
 		while(menu.getActivo()==false){
 			arkanoid.setVisible(false);
 		}
+
+		int dificultad = menu.getDificultad();
+		arkanoid.setDificultad(dificultad);
 		
 		arkanoid.setVisible(true);
 		

@@ -5,6 +5,8 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -12,7 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-public class Menu extends JFrame {
+public class Menu extends JFrame implements PropertyChangeListener {
 
 	private JPanel contentPane;
 	private JButton btnJugar;
@@ -20,6 +22,7 @@ public class Menu extends JFrame {
 	private JButton btnDificultad;
 	private JButton btnPersonalizacion;
 	private Boolean activo= false; //comprobador para App
+	public static int dificultad = 0;
 
 	/**
 	 * Launch the application.
@@ -116,6 +119,7 @@ public class Menu extends JFrame {
 			btnDificultad.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					abrirDificultad();
+					setVisible(false);
 				}
 			});
 		}
@@ -124,9 +128,13 @@ public class Menu extends JFrame {
 	
 	public void abrirDificultad() {
 		Dificultad dificultad=new Dificultad();
+		dificultad.addObserver(this);
+		this.setVisible(false);
 		dificultad.setVisible(true);
 		
 	}
+
+
 	
 	private JButton getBtnPersonalizacion() {
 		if (btnPersonalizacion == null) {
@@ -168,6 +176,26 @@ public class Menu extends JFrame {
 	public boolean getActivo() {
 		return activo;
 	}
+	
+	public void propertyChange(PropertyChangeEvent evt) {
+        if(evt != null) {
+            if(evt.getPropertyName().equals("Dificultad")) {
+                this.setVisible(true);
+				String vdificultad = evt.getNewValue().toString();
+				if (vdificultad.equals("0")){
+					dificultad = 0;
+				} else if (vdificultad.equals("1")) {
+					dificultad = 1;
+				} else {
+					dificultad = 3;
+				}
+            }
+        }
+
+    }
+
+	public int getDificultad() {
+		return dificultad;
+	}
 
 }
-
