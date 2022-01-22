@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.sql.SQLException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -12,7 +15,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-public class Menu extends JFrame {
+public class Menu extends JFrame implements PropertyChangeListener {
 
 	private JPanel contentPane;
 	private JButton btnJugar;
@@ -97,6 +100,7 @@ public class Menu extends JFrame {
 		panel_1.add(panel_6, BorderLayout.NORTH);
 	}
 	
+	//BOTON JUGAR
 	private JButton getBtnJugar() {
 		if (btnJugar == null) {
 			btnJugar = new JButton("JUGAR");
@@ -146,7 +150,7 @@ public class Menu extends JFrame {
 		
 	}
 
-
+	//Boton que genera la pantalla ranking
 	private JButton getBtnRanking() {
 		if (btnRanking == null) {
 			btnRanking = new JButton("Consultar Ranking");
@@ -159,14 +163,31 @@ public class Menu extends JFrame {
 		return btnRanking;
 	}
 	
+	//Accion para abrir pantalla ranking
 	public void abrirRanking() {
-		Ranking ranking=new Ranking();
+				String nombre="ramon";
+		//Crear la ventana ranking
+		Ranking ranking=new Ranking(nombre);
+		//Observador para conocer si pulsas volver
+		ranking.addObserver(this);
+		//Ocultar la pantalla menu
+		this.setVisible(false);
+		//Activar pantalla ranking
 		ranking.setVisible(true);
-		
 	}
 	
 	public boolean getActivo() {
+		//Comprobador para conocer si das a JUGAR
 		return activo;
+	}
+	
+	public void propertyChange(PropertyChangeEvent evt) {
+		if(evt != null) {
+			//Evento de ranking, para volver.
+			if(evt.getPropertyName().equals("RankingPuntuaciones")) {
+				this.setVisible(true);
+			}
+		}
 	}
 
 }
