@@ -7,8 +7,9 @@ public class Ball extends GameObject {
 	public double x;
 	public double y;
 	double radius = Config.BALL_RADIUS;
-	public double velocityX = Config.BALL_VELOCITY;
-	public double velocityY = Config.BALL_VELOCITY;
+	public int d;
+	public double velocityX = Config.getVelocidadBola(d);
+	public double velocityY = Config.getVelocidadBola(d);
 
 	public Ball(int x, int y) {
 		this.x = x;
@@ -21,18 +22,18 @@ public class Ball extends GameObject {
 				(int) radius * 2);
 	}
 
-	public void update(ScoreBoard scoreBoard, Paddle paddle) {
+	public void update(ScoreBoard scoreBoard, Paddle paddle, int d) {
 		x += velocityX * Config.FT_STEP;
 		y += velocityY * Config.FT_STEP;
 
 		if (left() < 0)
-			velocityX = Config.BALL_VELOCITY;
+			velocityX = Config.getVelocidadBola(d);
 		else if (right() > Config.SCREEN_WIDTH)
-			velocityX = -Config.BALL_VELOCITY;
+			velocityX = -Config.getVelocidadBola(d);
 		if (top() < 0) {
-			velocityY = Config.BALL_VELOCITY;
+			velocityY = Config.getVelocidadBola(d);
 		} else if (bottom() > Config.SCREEN_HEIGHT) {
-			velocityY = -Config.BALL_VELOCITY;
+			velocityY = -Config.getVelocidadBola(d);
 			x = paddle.x;
 			y = paddle.y - 50;
 			scoreBoard.die();
