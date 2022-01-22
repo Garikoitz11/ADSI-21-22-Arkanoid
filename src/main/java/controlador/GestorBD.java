@@ -24,7 +24,7 @@ public class GestorBD {
 			
 			//Crear un Statement, para realizar consulta
 			Statement st=conn.createStatement();
-					
+			
 			//Realiza la consulta y la guarda en resultado
 			resultado= st.executeQuery(consulta);
 			
