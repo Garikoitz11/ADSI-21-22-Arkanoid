@@ -48,11 +48,11 @@ public class Registrarse extends JFrame {
 		
 		JLabel lblNewLabel = new JLabel("Nombre de usuario");
 		
-		JLabel lblContrasea = new JLabel("Contraseña");
+		JLabel lblContrasea = new JLabel("Contrasena");
 		
-		JLabel lblRepetirContrasea = new JLabel("Repetir contraseña");
+		JLabel lblRepetirContrasea = new JLabel("Repetir contrasena");
 		
-		JLabel lblCorreoEletrnico = new JLabel("Correo eletrónico");
+		JLabel lblCorreoEletrnico = new JLabel("Correo eletronico");
 		
 		textField = new JTextField();
 		textField.setColumns(10);
@@ -70,7 +70,7 @@ public class Registrarse extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				GestorArkanoid GA = new GestorArkanoid();
-				if(GA.contraseñaIgual(textField.getText(), textField_1.getText(), textField_2.getText(), textField_3.getText())) {
+				if(GA.contrasenaIgual(textField.getText(), textField_1.getText(), textField_2.getText(), textField_3.getText())) {
 					ocultar();
 				}
 				else {

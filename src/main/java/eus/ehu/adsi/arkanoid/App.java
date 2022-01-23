@@ -40,7 +40,7 @@ public class App {
 		while(menu.getActivo()==false){
 			arkanoid.setVisible(false);
 		}
-		//menu.setVisible(false);
+		menu.setVisible(false);
 		
 		arkanoid.setVisible(true);
 		

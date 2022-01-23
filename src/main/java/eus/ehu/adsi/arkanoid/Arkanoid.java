@@ -104,7 +104,7 @@ public class Arkanoid extends JFrame implements KeyListener {
 						int dif=2;//DEFINIR
 						String usu="borja";//DEFINIR
 						GestorArkanoid GA= new GestorArkanoid();
-						GA.añadirRanking(dif, usu, scoreboard.score); //FALTA POR DEFINIR dif y usu
+						GA.anadirRanking(dif, usu, scoreboard.score); //FALTA POR DEFINIR dif y usu
 					}
 					
 					scoreboard.score = 0;
@@ -121,7 +121,7 @@ public class Arkanoid extends JFrame implements KeyListener {
 					int dif=3;//DEFINIR
 					String usu="borja";//DEFINIR
 					GestorArkanoid GA= new GestorArkanoid();
-					GA.añadirRanking(dif, usu, scoreboard.score); //FALTA POR DEFINIR dif y usu
+					GA.anadirRanking(dif, usu, scoreboard.score); //FALTA POR DEFINIR dif y usu
 					
 					count=true;
 				}

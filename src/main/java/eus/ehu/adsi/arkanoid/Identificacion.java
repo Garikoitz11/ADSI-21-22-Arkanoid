@@ -35,20 +35,20 @@ public class Identificacion extends JFrame {
 		JPanel Titulo = new JPanel();
 		getContentPane().add(Titulo, BorderLayout.NORTH);
 		
-		JLabel lblIdentificacin = new JLabel("IDENTIFICACIÓN");
+		JLabel lblIdentificacin = new JLabel("IDENTIFICACION");
 		lblIdentificacin.setFont(new Font("Dialog", Font.BOLD, 30));
 		Titulo.add(lblIdentificacin);
 		
 		JPanel Abajo = new JPanel();
 		getContentPane().add(Abajo, BorderLayout.SOUTH);
 		
-		JButton btnNewButton = new JButton("Recuperar contraseña");
+		JButton btnNewButton = new JButton("Recuperar contrasena");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
 		
-		JButton btnCambiarContrasea = new JButton("Cambiar contraseña");
+		JButton btnCambiarContrasea = new JButton("Cambiar contrasena");
 		GroupLayout gl_Abajo = new GroupLayout(Abajo);
 		gl_Abajo.setHorizontalGroup(
 			gl_Abajo.createParallelGroup(Alignment.LEADING)
@@ -77,12 +77,12 @@ public class Identificacion extends JFrame {
 		textField = new JTextField();
 		textField.setColumns(10);
 		
-		JLabel lblContrasea = new JLabel("Contraseña");
+		JLabel lblContrasea = new JLabel("Contrasena");
 		
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
 		
-		JButton btnIniciarSesin = new JButton("Iniciar sesión");
+		JButton btnIniciarSesin = new JButton("Iniciar sesion");
 		btnIniciarSesin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				GestorArkanoid GA = new GestorArkanoid();

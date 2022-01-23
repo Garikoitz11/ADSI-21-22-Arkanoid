@@ -6,11 +6,11 @@ import java.sql.SQLException;
 public class GestorJugadores {
 	
 	//Comprueba si el usuario y contraseña existe e inicia sesion
-	public String identificarse(String usuario, String contraseña) throws SQLException{
+	public String identificarse(String usuario, String contrasena) throws SQLException{
 		
 		ResultSet resultado= null;
 		
-		String consulta="Select NombreUsuario from Usuario where NombreUsuario= '"+ usuario +"' AND Contraseña= '"+ contraseña +"'";
+		String consulta="Select NombreUsuario from Usuario where NombreUsuario= '"+ usuario +"' AND Contrasena= '"+ contrasena +"'";
 		GestorBD bd = new GestorBD();
 		resultado=bd.execSQL1(consulta);
 		String usu = null;

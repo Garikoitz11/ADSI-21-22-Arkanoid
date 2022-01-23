@@ -155,7 +155,7 @@ public class GestorPuntuaciones {
 	}
 	
 	//Metodo para a�adir filas al ranking (BD)
-	public void añadirRanking(int pDificultad, String pUsuario, int pPuntos) {
+	public void anadirRanking(int pDificultad, String pUsuario, int pPuntos) {
 			//Datos pasados
 			int dificultad= pDificultad;
 			String usuario= pUsuario;

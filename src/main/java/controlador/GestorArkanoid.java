@@ -7,7 +7,7 @@ import com.github.cliftonlabs.json_simple.*;
 public class GestorArkanoid {
 	
 	//Comprueba que la contraseña sea igual. Si es igual añade el registro
-	public boolean contraseñaIgual(String nombre, String correo, String psw1, String psw2) {
+	public boolean contrasenaIgual(String nombre, String correo, String psw1, String psw2) {
 		if(psw1.equals(psw2)==false || nombre==null || correo==null || psw1==null || psw2==null) {
 			return false;
 		}
@@ -19,11 +19,11 @@ public class GestorArkanoid {
 	}
 	
 	//Comprueba si el inicio de sesion es correcto
-	public String identificarse(String usuario,String contraseña) {
+	public String identificarse(String usuario,String contrasena) {
 		GestorJugadores GJ = new GestorJugadores();
 		String nombreUsuario = null;
 		try {
-			nombreUsuario = GJ.identificarse(usuario,contraseña);
+			nombreUsuario = GJ.identificarse(usuario,contrasena);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -34,10 +34,10 @@ public class GestorArkanoid {
 	
 	
 	//Metodo para a�adir datos a la BD de ranking
-	public void añadirRanking(int pDificultad, String pUsuario, int pPuntos) throws SQLException {
+	public void anadirRanking(int pDificultad, String pUsuario, int pPuntos) throws SQLException {
 		GestorPuntuaciones GP= new GestorPuntuaciones();
 			
-		GP.añadirRanking(pDificultad, pUsuario, pPuntos);
+		GP.anadirRanking(pDificultad, pUsuario, pPuntos);
 	}
 	
 	//Metodo para obtener ranking personal de todas las dificultades, a GestorPuntuaciones
