@@ -45,6 +45,8 @@ public class Identificacion extends JFrame {
 		JButton btnNewButton = new JButton("Recuperar contrasena");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				RecuperarContrasena rc = new RecuperarContrasena();
+				rc.setVisible(true);
 			}
 		});
 		
