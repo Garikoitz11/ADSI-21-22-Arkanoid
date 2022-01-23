@@ -6,6 +6,8 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -34,6 +36,8 @@ public class Dificultad extends JFrame {
 	private JComboBox comboBox;
 	private JButton btnNewButton;
 	private JTextPane txtpnModificaLaDificultad;
+	public int dificultad;
+	private PropertyChangeSupport support;
 	/**
 	 * Launch the application.
 	 */
@@ -43,6 +47,7 @@ public class Dificultad extends JFrame {
 	 */
 	public Dificultad() {
 		initialize();
+		support = new PropertyChangeSupport(this);
 	}
 		
 	private void initialize() {
@@ -58,6 +63,10 @@ public class Dificultad extends JFrame {
 		contentPane.add(getContenido(), BorderLayout.CENTER);
 		contentPane.add(getVolver(), BorderLayout.SOUTH);
 		setTitle("Dificultad");
+	}
+
+	public void addObserver(PropertyChangeListener pList) {
+		support.addPropertyChangeListener(pList);
 	}
 
 	private JPanel getTítulo() {
@@ -141,16 +150,41 @@ public class Dificultad extends JFrame {
 	private JComboBox getComboBox() {
 		if (comboBox == null) {
 			comboBox = new JComboBox();
-			comboBox.setModel(new DefaultComboBoxModel(new String[] {"1. Facil", "2. Normal", "3. Dificil"}));
+			comboBox.addItem("0. Facil");
+            comboBox.addItem("1. Normal");
+            comboBox.addItem("2. Dificil");
+			comboBox.addActionListener(new ActionListener() {
+
+                public void actionPerformed(ActionEvent e) {
+							if(comboBox.getSelectedItem().equals("0. Facil")) {
+								dificultad = 0;
+							} else if(comboBox.getSelectedItem().equals("1. Normal")) {
+								dificultad = 1;
+							} else {
+								dificultad = 2;
+							}System.out.println(dificultad);
+                    } 
+            } );
 		}
 		return comboBox;
 	}
 	private JButton getBtnNewButton() {
-		if (btnNewButton == null) {
-			btnNewButton = new JButton("Confirmar");
-		}
-		return btnNewButton;
+        if (btnNewButton == null) {
+            btnNewButton = new JButton("Confirmar");
+            btnNewButton.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    volver();
+                }
+            });
+        }
+        return btnNewButton;
+    }
+
+	public void volver() {
+		support.firePropertyChange("Dificultad", false, dificultad);
+		this.dispose();
 	}
+
 	private JTextPane getTxtpnModificaLaDificultad() {
 		if (txtpnModificaLaDificultad == null) {
 			txtpnModificaLaDificultad = new JTextPane();

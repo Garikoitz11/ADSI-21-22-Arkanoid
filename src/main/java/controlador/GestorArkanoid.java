@@ -33,7 +33,7 @@ public class GestorArkanoid {
 	
 	
 	
-	//Metodo para a�adir datos a la BD de ranking
+	//Metodo para anadir datos a la BD de ranking
 	public void anadirRanking(int pDificultad, String pUsuario, int pPuntos) throws SQLException {
 		GestorPuntuaciones GP= new GestorPuntuaciones();
 			

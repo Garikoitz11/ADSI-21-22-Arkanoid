@@ -42,9 +42,10 @@ public class Arkanoid extends JFrame implements KeyListener {
 	private ScoreBoard scoreboard = new ScoreBoard();
 
 	private double lastFt;
-	private double currentSlice;
-	
-	private boolean count=false;
+	private double currentSlice;	
+
+	private int d;
+  private boolean count=false;
 	
 	public Arkanoid() {
 		
@@ -60,7 +61,7 @@ public class Arkanoid extends JFrame implements KeyListener {
 		this.setLocationRelativeTo(null);
 		this.createBufferStrategy(2);
 
-		bricks = Game.initializeBricks(bricks);
+		//bricks = Game.initializeBricks(bricks, d);
 
 	}
 	
@@ -96,15 +97,15 @@ public class Arkanoid extends JFrame implements KeyListener {
 				if (game.isTryAgain()) {
 					logger.info("Trying again");
 					game.setTryAgain(false);
-					bricks = Game.initializeBricks(bricks);
+					bricks = Game.initializeBricks(bricks, d);
 					scoreboard.lives = Config.PLAYER_LIVES;
 					
 					//Registrar puntuacion con usuario y dificultad, si da la casualidad de dar ENTER
 					if(count==false) {
-						int dif=2;//DEFINIR
 						String usu="borja";//DEFINIR
 						GestorArkanoid GA= new GestorArkanoid();
-						GA.anadirRanking(dif, usu, scoreboard.score); //FALTA POR DEFINIR dif y usu
+
+						GA.anadirRanking(d, usu, scoreboard.score); //FALTA POR DEFINIR usu
 					}
 					
 					scoreboard.score = 0;
@@ -118,10 +119,10 @@ public class Arkanoid extends JFrame implements KeyListener {
 					count=false;
 					
 				}else if (count==false) {
-					int dif=3;//DEFINIR
 					String usu="borja";//DEFINIR
 					GestorArkanoid GA= new GestorArkanoid();
-					GA.anadirRanking(dif, usu, scoreboard.score); //FALTA POR DEFINIR dif y usu
+
+					GA.anadirRanking(d, usu, scoreboard.score); //FALTA POR DEFINIR usu
 					
 					count=true;
 				}
@@ -165,14 +166,14 @@ public class Arkanoid extends JFrame implements KeyListener {
 
 		for (; currentSlice >= Config.FT_SLICE; currentSlice -= Config.FT_SLICE) {
 
-			ball.update(scoreboard, paddle);
+			ball.update(scoreboard, paddle, d);
 			paddle.update();
-			Game.testCollision(paddle, ball);
+			Game.testCollision(paddle, ball, d);
 
 			Iterator<Brick> it = bricks.iterator();
 			while (it.hasNext()) {
 				Brick brick = it.next();
-				Game.testCollision(brick, ball, scoreboard);
+				Game.testCollision(brick, ball, scoreboard, d);
 				if (brick.destroyed) {
 					it.remove();
 				}
@@ -240,5 +241,10 @@ public class Arkanoid extends JFrame implements KeyListener {
 	}
 
 	public void keyTyped(KeyEvent arg0) {}
+
+	public void setDificultad(int dificultad) {
+		d = dificultad;
+		bricks = Game.initializeBricks(bricks, d);
+	}
 
 }
