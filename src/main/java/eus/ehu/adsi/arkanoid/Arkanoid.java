@@ -9,15 +9,18 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferStrategy;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import controlador.GestorArkanoid;
 import eus.ehu.adsi.arkanoid.view.Ball;
 import eus.ehu.adsi.arkanoid.view.Config;
 import eus.ehu.adsi.arkanoid.view.Paddle;
@@ -39,7 +42,9 @@ public class Arkanoid extends JFrame implements KeyListener {
 	private ScoreBoard scoreboard = new ScoreBoard();
 
 	private double lastFt;
-	private double currentSlice;	
+	private double currentSlice;
+	
+	private boolean count=false;
 	
 	public Arkanoid() {
 		
@@ -59,7 +64,7 @@ public class Arkanoid extends JFrame implements KeyListener {
 
 	}
 	
-	void run() {
+	void run() throws SQLException {
 
 		BufferStrategy bf = this.getBufferStrategy();
 		Graphics g = bf.getDrawGraphics();
@@ -67,6 +72,8 @@ public class Arkanoid extends JFrame implements KeyListener {
 		g.fillRect(0, 0, getWidth(), getHeight());
 		
 		game.setRunning(true);
+		
+		count=false;
 
 		while (game.isRunning()) {
 
@@ -91,6 +98,15 @@ public class Arkanoid extends JFrame implements KeyListener {
 					game.setTryAgain(false);
 					bricks = Game.initializeBricks(bricks);
 					scoreboard.lives = Config.PLAYER_LIVES;
+					
+					//Registrar puntuacion con usuario y dificultad, si da la casualidad de dar ENTER
+					if(count==false) {
+						int dif=2;//DEFINIR
+						String usu="borja";//DEFINIR
+						GestorArkanoid GA= new GestorArkanoid();
+						GA.añadirRanking(dif, usu, scoreboard.score); //FALTA POR DEFINIR dif y usu
+					}
+					
 					scoreboard.score = 0;
 					scoreboard.win = false;
 					scoreboard.gameOver = false;
@@ -98,7 +114,18 @@ public class Arkanoid extends JFrame implements KeyListener {
 					ball.x = Config.SCREEN_WIDTH / 2;
 					ball.y = Config.SCREEN_HEIGHT / 2;
 					paddle.x = Config.SCREEN_WIDTH / 2;
+					
+					count=false;
+					
+				}else if (count==false) {
+					int dif=3;//DEFINIR
+					String usu="borja";//DEFINIR
+					GestorArkanoid GA= new GestorArkanoid();
+					GA.añadirRanking(dif, usu, scoreboard.score); //FALTA POR DEFINIR dif y usu
+					
+					count=true;
 				}
+				
 			}
 
 			long time2 = System.currentTimeMillis();
@@ -113,8 +140,22 @@ public class Arkanoid extends JFrame implements KeyListener {
 			}
 
 		}
-
-		this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+		
+		JOptionPane.showMessageDialog(null, "¿Estas seguro de querer abandonar?", "MENSAJE ERROR", JOptionPane.ERROR_MESSAGE);
+		
+		game.setTryAgain(false);
+		bricks = Game.initializeBricks(bricks);
+		scoreboard.lives = Config.PLAYER_LIVES;
+		
+		scoreboard.score = 0;
+		scoreboard.win = false;
+		scoreboard.gameOver = false;
+		scoreboard.updateScoreboard();
+		ball.x = Config.SCREEN_WIDTH / 2;
+		ball.y = Config.SCREEN_HEIGHT / 2;
+		paddle.x = Config.SCREEN_WIDTH / 2;
+		
+		this.setVisible(false);
 
 	}
 
