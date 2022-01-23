@@ -98,6 +98,7 @@ public class Ranking extends JFrame {
 		setTitle("Ranking");
 	}
 	
+	//Observador
 	public void addObserver(PropertyChangeListener pList) {
 		support.addPropertyChangeListener(pList);
 	}
@@ -142,6 +143,7 @@ public class Ranking extends JFrame {
 		return lblNewLabel;
 	}
 	
+	//Desplegable para filtrar por dificultad
 	private JComboBox getComboBox() {
 		if (comboBox == null) {
 			comboBox = new JComboBox();
