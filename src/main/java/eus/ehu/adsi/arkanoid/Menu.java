@@ -203,7 +203,7 @@ public class Menu extends JFrame implements PropertyChangeListener {
 				            } else if (vdificultad.equals("1")) {
 					              dificultad = 1;
 				            } else {
-					              dificultad = 3;
+					              dificultad = 2;
 				            }
           }//Evento de ranking, para volver.
           else if(evt.getPropertyName().equals("RankingPuntuaciones")){
