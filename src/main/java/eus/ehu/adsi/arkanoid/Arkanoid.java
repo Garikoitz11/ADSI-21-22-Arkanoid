@@ -52,6 +52,8 @@ public class Arkanoid extends JFrame implements KeyListener {
 	private Color c1;
 	private Color c2;
 	private Color c3;
+	
+	private String nombreUsuario;
 
 
 	public Arkanoid() {
@@ -109,9 +111,8 @@ public class Arkanoid extends JFrame implements KeyListener {
 					
 					//Registrar puntuacion con usuario y dificultad, si da la casualidad de dar ENTER
 					if(count==false) {
-						String usu="unai";//DEFINIR
 						GestorArkanoid GA= new GestorArkanoid();
-						GA.anadirRanking(d+1, usu, scoreboard.score); //FALTA POR DEFINIR usu
+						GA.anadirRanking(d+1, nombreUsuario, scoreboard.score);
 					}
 					
 					scoreboard.score = 0;
@@ -124,10 +125,10 @@ public class Arkanoid extends JFrame implements KeyListener {
 					
 					count=false;
 					
-				}else if (count==false) {
-					String usu="unai";//DEFINIR
+				}//Registrar puntuacion con usuario y dificultad tras acabar la partida
+				else if (count==false) {
 					GestorArkanoid GA= new GestorArkanoid();
-					GA.anadirRanking(d+1, usu, scoreboard.score); //FALTA POR DEFINIR usu
+					GA.anadirRanking(d+1, nombreUsuario, scoreboard.score);
 					
 					count=true;
 				}
@@ -268,6 +269,10 @@ public class Arkanoid extends JFrame implements KeyListener {
 	public void setDificultad(int dificultad) {
 		d = dificultad;
 		bricks = Game.initializeBricks(bricks, d);
+	}
+	
+	public void setNombreUsuario(String nom) {
+		nombreUsuario=nom;
 	}
 
 }

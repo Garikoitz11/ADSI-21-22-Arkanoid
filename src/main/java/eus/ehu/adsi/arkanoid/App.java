@@ -28,6 +28,7 @@ public class App {
 		//Recoger nombre de identificacion y pasarlo al menu
 		String name=identificarse.nombreUsuario();
 		menu.setNombreUsuario(name);
+		arkanoid.setNombreUsuario(name);
 		
 		//Esconder Pantalla identificacion
 		identificarse.setVisible(false);
