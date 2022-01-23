@@ -165,7 +165,7 @@ public class Menu extends JFrame implements PropertyChangeListener {
 	
 	//Accion para abrir pantalla ranking
 	public void abrirRanking() {
-				String nombre="ramon";
+				String nombre="ramon";//DEFINIR
 		//Crear la ventana ranking
 		Ranking ranking=new Ranking(nombre);
 		//Observador para conocer si pulsas volver
@@ -179,6 +179,11 @@ public class Menu extends JFrame implements PropertyChangeListener {
 	public boolean getActivo() {
 		//Comprobador para conocer si das a JUGAR
 		return activo;
+	}
+	
+	public void setActivo(boolean pActivo) {
+		//Reiniciar comprobador de jugar
+		activo=pActivo;
 	}
 	
 	public void propertyChange(PropertyChangeEvent evt) {

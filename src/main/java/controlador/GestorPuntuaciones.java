@@ -2,6 +2,8 @@ package controlador;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import com.github.cliftonlabs.json_simple.*;
 
@@ -150,6 +152,24 @@ public class GestorPuntuaciones {
 		}
 		
 		return rankingGlobal;
+	}
+	
+	//Metodo para añadir filas al ranking (BD)
+	public void añadirRanking(int pDificultad, String pUsuario, int pPuntos) {
+			//Datos pasados
+			int dificultad= pDificultad;
+			String usuario= pUsuario;
+			int puntos= pPuntos;
+			
+			//Obtencion de dia
+			LocalDateTime dia = LocalDateTime.now();
+			DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+			String fechaHora = dia.format(formato);
+			
+			//Consulta de Insert
+			String consulta="Insert into R3 values ('"+ usuario +"', "+ dificultad +", '"+ fechaHora +"', "+ puntos +")";
+			GestorBD bd=new GestorBD();
+			bd.execSQL2(consulta);
 	}
 	
 }

@@ -14,7 +14,7 @@ public class GestorBD {
 			String DB= "amunikearkanoid";
 			//Usuario de la base de datos online
 			String user="amunike";
-			//Contraseña de la base de datos online
+			//Contrasena de la base de datos online
 			String pass="amunikeadsi";
 			//Direccion de la pagina web
 			String url="jdbc:mysql://db4free.net:3306/"+DB+"?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false";
@@ -48,7 +48,7 @@ public class GestorBD {
 			String DB= "amunikearkanoid";
 			//Usuario de la base de datos online
 			String user="amunike";
-			//Contraseña de la base de datos online
+			//Contrasena de la base de datos online
 			String pass="amunikeadsi";
 			//Direccion de la pagina web
 			String url="jdbc:mysql://db4free.net:3306/"+DB+"?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false";
@@ -58,9 +58,9 @@ public class GestorBD {
 			
 			//Crear un Statement, para realizar consulta
 			Statement st=conn.createStatement();
-					
+			
 			//Realizar la consulta de insercion, actualizacion o borrado
-			st.executeQuery(consulta);
+			st.executeUpdate(consulta);
 			
 			//Cierre de conexion
 			conn.close();
