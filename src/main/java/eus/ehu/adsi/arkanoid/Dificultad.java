@@ -150,19 +150,19 @@ public class Dificultad extends JFrame {
 	private JComboBox getComboBox() {
 		if (comboBox == null) {
 			comboBox = new JComboBox();
-			comboBox.addItem("0. Facil");
-            comboBox.addItem("1. Normal");
-            comboBox.addItem("2. Dificil");
+			comboBox.addItem("1. Facil");
+            comboBox.addItem("2. Normal");
+            comboBox.addItem("3. Dificil");
 			comboBox.addActionListener(new ActionListener() {
 
                 public void actionPerformed(ActionEvent e) {
-							if(comboBox.getSelectedItem().equals("0. Facil")) {
+							if(comboBox.getSelectedItem().equals("1. Facil")) {
 								dificultad = 0;
-							} else if(comboBox.getSelectedItem().equals("1. Normal")) {
+							} else if(comboBox.getSelectedItem().equals("2. Normal")) {
 								dificultad = 1;
 							} else {
 								dificultad = 2;
-							}System.out.println(dificultad);
+							}
                     } 
             } );
 		}

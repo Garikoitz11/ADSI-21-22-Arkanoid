@@ -23,7 +23,7 @@ public class App {
 		
 	}
 	
-	public static void EME() throws SQLException { //para futuro
+	public static void EME() throws SQLException {
 		arkanoid.setVisible(false);
 		menu.setVisible(true);
 		
@@ -35,7 +35,7 @@ public class App {
  
 		int dificultad = menu.getDificultad();
 		arkanoid.setDificultad(dificultad);
-    
+		
 		menu.setVisible(false);
     
 		arkanoid.setVisible(true);

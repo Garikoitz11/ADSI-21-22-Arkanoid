@@ -45,7 +45,7 @@ public class Arkanoid extends JFrame implements KeyListener {
 	private double currentSlice;	
 
 	private int d;
-  private boolean count=false;
+    private boolean count=false;
 	
 	public Arkanoid() {
 		
@@ -102,9 +102,9 @@ public class Arkanoid extends JFrame implements KeyListener {
 					
 					//Registrar puntuacion con usuario y dificultad, si da la casualidad de dar ENTER
 					if(count==false) {
-						String usu="borja";//DEFINIR
+						String usu="unai";//DEFINIR
 						GestorArkanoid GA= new GestorArkanoid();
-						GA.anadirRanking(d, usu, scoreboard.score); //FALTA POR DEFINIR usu
+						GA.anadirRanking(d+1, usu, scoreboard.score); //FALTA POR DEFINIR usu
 					}
 					
 					scoreboard.score = 0;
@@ -118,9 +118,9 @@ public class Arkanoid extends JFrame implements KeyListener {
 					count=false;
 					
 				}else if (count==false) {
-					String usu="borja";//DEFINIR
+					String usu="unai";//DEFINIR
 					GestorArkanoid GA= new GestorArkanoid();
-					GA.anadirRanking(d, usu, scoreboard.score); //FALTA POR DEFINIR usu
+					GA.anadirRanking(d+1, usu, scoreboard.score); //FALTA POR DEFINIR usu
 					
 					count=true;
 				}
@@ -143,7 +143,7 @@ public class Arkanoid extends JFrame implements KeyListener {
 		JOptionPane.showMessageDialog(null, "�Estas seguro de querer abandonar? \nSe perdera la puntuacion obtenida", "Abandonar", JOptionPane.QUESTION_MESSAGE);
 		
 		game.setTryAgain(false);
-		bricks = Game.initializeBricks(bricks);
+		bricks = Game.initializeBricks(bricks, d);
 		scoreboard.lives = Config.PLAYER_LIVES;
 		
 		scoreboard.score = 0;
