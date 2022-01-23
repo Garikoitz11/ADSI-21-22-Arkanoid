@@ -31,7 +31,22 @@ public class GestorArkanoid {
 		return nombreUsuario;
 	}
 	
-	
+	public boolean comprobar(String nombre, String psw, String psw1, String psw2) {
+		GestorJugadores GJ = new GestorJugadores();
+		try {
+			if(GJ.identificarse(nombre,psw)!=null && psw1!=null && psw1.equals(psw2)) {
+				GJ.cambiar(nombre, psw1);
+				return true;
+			}
+			else {
+				return false;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+	}
 	
 	//Metodo para anadir datos a la BD de ranking
 	public void anadirRanking(int pDificultad, String pUsuario, int pPuntos) throws SQLException {

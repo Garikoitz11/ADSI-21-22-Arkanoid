@@ -33,4 +33,10 @@ public class GestorJugadores {
 		GestorBD bd = new GestorBD();
 		bd.execSQL2(consulta);
 	}
+	
+	public void cambiar(String usu, String pwd) {
+		String consulta="UPDATE Usuario SET Contrasena='"+ pwd+"' WHERE NombreUsuario = '"+ usu +"'";
+		GestorBD bd = new GestorBD();
+		bd.execSQL2(consulta);
+	}
 }
