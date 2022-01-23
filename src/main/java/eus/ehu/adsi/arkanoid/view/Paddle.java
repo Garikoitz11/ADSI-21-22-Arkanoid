@@ -7,6 +7,8 @@ import java.awt.Graphics;
 public class Paddle extends Rectangle {
 
 	double velocity = 0.0;
+	public Color coloPaddle = Color.red;
+
 
 	public Paddle(double x, double y) {
 		this.x = x;
@@ -40,8 +42,12 @@ public class Paddle extends Rectangle {
 	}
 
 	public void draw(Graphics g) {
-		g.setColor(Config.PADDLE_COLOR);
+		g.setColor(coloPaddle);
+		
 		g.fillRect((int) (left()), (int) (top()), (int) sizeX, (int) sizeY);
 	}
-
+	public void setColorPaddle(Color c2) {
+		coloPaddle = c2;
+	}
+	
 }

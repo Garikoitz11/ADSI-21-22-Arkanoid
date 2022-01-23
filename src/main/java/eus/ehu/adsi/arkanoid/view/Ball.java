@@ -1,5 +1,6 @@
 package eus.ehu.adsi.arkanoid.view;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 public class Ball extends GameObject {
@@ -8,8 +9,11 @@ public class Ball extends GameObject {
 	public double y;
 	double radius = Config.BALL_RADIUS;
 	public int d;
+  
+	public int colorBola;
 	public double velocityX = Config.getVelocidadBola(d);
 	public double velocityY = Config.getVelocidadBola(d);
+	public Color color1 = Config.getColorBola(colorBola);
 
 	public Ball(int x, int y) {
 		this.x = x;
@@ -17,7 +21,7 @@ public class Ball extends GameObject {
 	}
 
 	public void draw(Graphics g) {
-		g.setColor(Config.BALL_COLOR);
+		g.setColor( color1);
 		g.fillOval((int) left(), (int) top(), (int) radius * 2,
 				(int) radius * 2);
 	}
@@ -38,7 +42,6 @@ public class Ball extends GameObject {
 			y = paddle.y - 50;
 			scoreBoard.die();
 		}
-
 	}
 
 	public double left() {
@@ -56,5 +59,7 @@ public class Ball extends GameObject {
 	public double bottom() {
 		return y + radius;
 	}
-
+	/*public void setColorBola(Color colorBola) {
+		colorBola = c1;
+	}*/
 }

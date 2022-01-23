@@ -1,5 +1,6 @@
 package eus.ehu.adsi.arkanoid;
 
+import java.awt.Color;
 import java.sql.SQLException;
 
 public class App {
@@ -7,6 +8,7 @@ public class App {
 	public static Identificacion identificarse;
 	public static Menu menu;
 	public static Arkanoid arkanoid;
+
 	
 	public static void main(String[] args) {
 		//Iniciar variables
@@ -14,6 +16,9 @@ public class App {
 		menu=new Menu();
 		arkanoid=new Arkanoid();
 		
+		
+		EME(); 
+
 		//Mostrar pantalla identificacion
 		identificarse.setVisible(true);
 		arkanoid.setVisible(false);
@@ -39,29 +44,43 @@ public class App {
 			}
 		}
 			
+
 		
 	}
 	
 	public static void EME() throws SQLException {
 		arkanoid.setVisible(false);
-        menu.setVisible(true);
+
+    menu.setVisible(true);
 		menu.setActivo(false);
 		
 		//Esperar a que se le de a jugar
 		while(menu.getActivo()==false){
 			arkanoid.setVisible(false);
 		}
-		
+
 		//Recoger dificultad del menu y pasarlo al juego
 		int dificultad = menu.getDificultad();
 		arkanoid.setDificultad(dificultad);
-		
-		//Esconder Pantalla menu
-		menu.setVisible(false);
     
+    //Esconder Pantalla menu
+		menu.setVisible(false);
+		
+		Color colorBola = menu.getColorBola();
+		arkanoid.setColorBola(colorBola);
+		
+		Color colorFondo = menu.getColorFondo();
+		arkanoid.setColorFondo(colorFondo);
+		
+		Color colorPaddle = menu.getColorPaddle();
+		arkanoid.setColorPaddle(colorPaddle);
+		
+		Color colorBrick = menu.getColorBrick();
+		arkanoid.setColorBrick(colorBrick);
+		
 		arkanoid.setVisible(true);
+		
 		
 		arkanoid.run();
 	}
-
 }

@@ -1,6 +1,7 @@
 package eus.ehu.adsi.arkanoid;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -25,6 +26,10 @@ public class Menu extends JFrame implements PropertyChangeListener {
 	private JButton btnPersonalizacion;
 	private Boolean activo= false; //comprobador para App
 	public static int dificultad = 0;
+	public static Color colorFondo = Color.black;
+	public static Color colorBola = Color.green;
+	public static Color colorPaddle = Color.white;
+	public static Color colorBrick = Color.blue;
 
 	/**
 	 * Launch the application.
@@ -145,6 +150,7 @@ public class Menu extends JFrame implements PropertyChangeListener {
 			btnPersonalizacion.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					abrirPersonalizacion();
+					setVisible(false);
 				}
 			});
 		}
@@ -153,6 +159,8 @@ public class Menu extends JFrame implements PropertyChangeListener {
 	
 	public void abrirPersonalizacion() {
 		Personalizacion personalizacion=new Personalizacion();
+		personalizacion.addObserver(this);
+		this.setVisible(false);
 		personalizacion.setVisible(true);
 		
 	}
@@ -187,14 +195,84 @@ public class Menu extends JFrame implements PropertyChangeListener {
 		return activo;
 	}
 	
-	public void setActivo(boolean pActivo) {
-		//Reiniciar comprobador de jugar
-		activo=pActivo;
-	}
 
 	public void propertyChange(PropertyChangeEvent evt) {
-        if(evt != null) {//Evento de dificultad, para volver.
+        if(evt != null) {
             if(evt.getPropertyName().equals("Dificultad")) {
+                this.setVisible(true);
+				        String vdificultad = evt.getNewValue().toString();
+				        if (vdificultad.equals("0")){
+					          dificultad = 0;
+				        } else if (vdificultad.equals("1")) {
+					          dificultad = 1;
+				        } else {
+					          dificultad = 3;
+				        }
+            } else if(evt.getPropertyName().equals("colorFondo")) {
+                this.setVisible(true);
+                String vcolorFondo = evt.getNewValue().toString();
+                if(vcolorFondo.equals("0")) {
+                	colorFondo = Color.red;
+                }else if(vcolorFondo.equals("1")) {
+                	colorFondo = Color.blue;
+                }else if(vcolorFondo.equals("2")) {
+                	colorFondo = Color.green;
+                }else if(vcolorFondo.equals("3")) {
+                	colorFondo = Color.yellow;
+                }else if(vcolorFondo.equals("4")) {
+                	colorFondo = Color.white;
+                }else{
+                	colorFondo = Color.black;
+                }
+            }else if(evt.getPropertyName().equals("colorBola")) {
+                this.setVisible(true);
+                String vcolorBola = evt.getNewValue().toString();
+                if(vcolorBola.equals("0")) {
+                	colorBola = Color.red;
+                }else if(vcolorBola.equals("1")) {
+                	colorBola = Color.blue; 
+                }else if(vcolorBola.equals("2")) {
+                	colorBola = Color.green;
+                }else if(vcolorBola.equals("3")) {
+                	colorBola = Color.yellow;
+                }else if(vcolorBola.equals("4")) {
+                	colorBola = Color.white;
+                }else{
+                	colorBola = Color.black;
+                }
+            }else if(evt.getPropertyName().equals("colorPaddle")) {
+                this.setVisible(true);
+                String vcolorPaddle = evt.getNewValue().toString();
+                if(vcolorPaddle.equals("0")) {
+                	colorPaddle = Color.red;
+                }else if(vcolorPaddle.equals("1")) {
+                	colorPaddle = Color.blue;
+                }else if(vcolorPaddle.equals("2")) {
+                	colorPaddle = Color.green;
+                }else if(vcolorPaddle.equals("3")) {
+                	colorPaddle = Color.yellow;
+                }else if(vcolorPaddle.equals("4")) {
+                	colorPaddle = Color.white;
+                }else{
+                	colorPaddle = Color.black;
+                } 
+            }else if(evt.getPropertyName().equals("colorBrick")) {
+                this.setVisible(true);
+                String vcolorBrick = evt.getNewValue().toString();
+                if(vcolorBrick.equals("0")) {
+                	colorBrick = Color.red;
+                }else if(vcolorBrick.equals("1")) {
+                	colorBrick = Color.blue;
+                }else if(vcolorBrick.equals("2")) {
+                	colorBrick = Color.green;
+                }else if(vcolorBrick.equals("3")) {
+                	colorBrick = Color.yellow;
+                }else if(vcolorBrick.equals("4")) {
+                	colorBrick = Color.white;
+                }else{
+                	colorBrick = Color.black;
+                }
+            }else if(evt.getPropertyName().equals("Dificultad")) {//Evento de dificultad, para volver.
                 this.setVisible(true);
 				        String vdificultad = evt.getNewValue().toString();
 				            if (vdificultad.equals("0")){
@@ -209,13 +287,32 @@ public class Menu extends JFrame implements PropertyChangeListener {
               this.setVisible(true);
           }
         }
-
     }
 
+	public void setActivo(boolean pActivo) {
+		//Reiniciar comprobador de jugar
+		activo=pActivo;
+	}
 	public int getDificultad() {
 		return dificultad;
 	}
 	
+	public Color getColorFondo() {
+		return colorFondo;
+	}
+	
+	public Color getColorBola() {
+		return colorBola;
+	}
+
+	public Color getColorPaddle() {
+		return colorPaddle;
+	}
+	
+	public Color getColorBrick() {
+		return colorBrick;
+	}
+
 	public void setNombreUsuario(String nom) {
 		nombreUsuario=nom;
 	}

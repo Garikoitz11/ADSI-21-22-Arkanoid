@@ -47,6 +47,13 @@ public class Arkanoid extends JFrame implements KeyListener {
 	private int d;
   private boolean count=false;
 	
+	private int d;
+	private Color c;
+	private Color c1;
+	private Color c2;
+	private Color c3;
+
+
 	public Arkanoid() {
 		
 		game = new Game ();
@@ -69,7 +76,7 @@ public class Arkanoid extends JFrame implements KeyListener {
 
 		BufferStrategy bf = this.getBufferStrategy();
 		Graphics g = bf.getDrawGraphics();
-		g.setColor(Color.black);
+		g.setColor(c);
 		g.fillRect(0, 0, getWidth(), getHeight());
 		
 		game.setRunning(true);
@@ -188,7 +195,7 @@ public class Arkanoid extends JFrame implements KeyListener {
 
 			g = bf.getDrawGraphics();
 
-			g.setColor(Config.BACKGROUND_COLOR);
+			g.setColor(c);
 			g.fillRect(0, 0, getWidth(), getHeight());
 
 			ball.draw(g);
@@ -239,6 +246,20 @@ public class Arkanoid extends JFrame implements KeyListener {
 	}
 
 	public void keyTyped(KeyEvent arg0) {}
+
+	public void setColorFondo(Color colorFondo) {
+		c= colorFondo;
+	}
+	
+	public void setColorBola(Color colorBola) {
+		c1 = colorBola;
+	}	
+	public void setColorPaddle(Color colorPaddle) {
+		c2 = colorPaddle;
+	}
+	public void setColorBrick(Color colorBrick) {
+		c3 = colorBrick;
+	}	
 
 	public void setDificultad(int dificultad) {
 		d = dificultad;
