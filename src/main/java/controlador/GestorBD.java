@@ -11,13 +11,13 @@ public class GestorBD {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			
 			//Nombre base de datos online
-			String DB= "amunikearkanoid";
+			String DB= "sql11467512";
 			//Usuario de la base de datos online
-			String user="amunike";
+			String user="sql11467512";
 			//Contrasena de la base de datos online
-			String pass="amunikeadsi";
+			String pass="QG3lKfvmIl";
 			//Direccion de la pagina web
-			String url="jdbc:mysql://db4free.net:3306/"+DB+"?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false";
+			String url="jdbc:mysql://sql11.freesqldatabase.com:3306/"+DB+"?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false";
 			
 			//Ser realiza la conexion
 			Connection conn=DriverManager.getConnection(url,user,pass);
@@ -45,13 +45,13 @@ public class GestorBD {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			
 			//Nombre base de datos online
-			String DB= "amunikearkanoid";
+			String DB= "sql11467512";
 			//Usuario de la base de datos online
-			String user="amunike";
+			String user="sql11467512";
 			//Contrasena de la base de datos online
-			String pass="amunikeadsi";
+			String pass="QG3lKfvmIl";
 			//Direccion de la pagina web
-			String url="jdbc:mysql://db4free.net:3306/"+DB+"?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false";
+			String url="jdbc:mysql://sql11.freesqldatabase.com:3306/"+DB+"?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false";
 			
 			//Se realiza la conexion
 			Connection conn=DriverManager.getConnection(url,user,pass);
