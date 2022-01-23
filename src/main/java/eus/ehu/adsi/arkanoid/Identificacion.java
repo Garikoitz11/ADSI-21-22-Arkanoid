@@ -91,7 +91,7 @@ public class Identificacion extends JFrame {
 					nombreUsuario = textField.getText();
 				}
 				else {
-					JOptionPane.showMessageDialog(null, "No ha sido posible iniciar sesión", "ERORR AL INICIAR SESIÓN", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "No ha sido posible iniciar sesion", "ERORR AL INICIAR SESION", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});

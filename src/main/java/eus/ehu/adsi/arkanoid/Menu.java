@@ -172,9 +172,8 @@ public class Menu extends JFrame implements PropertyChangeListener {
 	
 	//Accion para abrir pantalla ranking
 	public void abrirRanking() {
-				String nombre="ramon";//DEFINIR
 		//Crear la ventana ranking
-		Ranking ranking=new Ranking(nombre);
+		Ranking ranking=new Ranking(nombreUsuario);
 		//Observador para conocer si pulsas volver
 		ranking.addObserver(this);
 		//Ocultar la pantalla menu
