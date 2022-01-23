@@ -49,6 +49,12 @@ public class Identificacion extends JFrame {
 		});
 		
 		JButton btnCambiarContrasea = new JButton("Cambiar contrasena");
+		btnCambiarContrasea.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				CambiarContrasena cc = new CambiarContrasena();
+				cc.setVisible(true);
+			}
+		});
 		GroupLayout gl_Abajo = new GroupLayout(Abajo);
 		gl_Abajo.setHorizontalGroup(
 			gl_Abajo.createParallelGroup(Alignment.LEADING)
