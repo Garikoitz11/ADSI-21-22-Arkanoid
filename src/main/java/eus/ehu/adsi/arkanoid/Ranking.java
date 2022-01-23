@@ -4,16 +4,28 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+
 import javax.swing.JTable;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
+
+import com.github.cliftonlabs.json_simple.*;
+
+import controlador.GestorArkanoid;
 
 public class Ranking extends JFrame {
 
@@ -26,6 +38,11 @@ public class Ranking extends JFrame {
 	private JLabel lblNewLabel;
 	private JComboBox comboBox;
 	private JButton btnVolver;
+	
+	private PropertyChangeSupport support;
+	private String nombreUsuario;
+	
+	//Atributos para las tablas
 	DefaultTableModel modeloParticular;
 	DefaultTableModel modeloGlobal;
 	/**
@@ -35,23 +52,38 @@ public class Ranking extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Ranking() {
-		initialize();
+	public Ranking(String NU) {
+		try {
+			initialize();
+			
+			//Recoger nombre de usuario
+			nombreUsuario=NU;
 		
-		modeloParticular = new DefaultTableModel();
-		modeloParticular.addColumn("Dificultad");
-		modeloParticular.addColumn("Puntuaci�n");
-		getTabla().setModel(modeloParticular);
+			//Tabla para ranking personal
+			modeloParticular = new DefaultTableModel();
+			modeloParticular.addColumn("Dificultad");
+			modeloParticular.addColumn("Puntuacion");
+			getTabla().setModel(modeloParticular);
 		
-		modeloGlobal = new DefaultTableModel();
-		modeloGlobal.addColumn("Usuario");
-		modeloGlobal.addColumn("Dificultad");
-		modeloGlobal.addColumn("Puntuaci�n");
-		getTablaGlobal().setModel(modeloGlobal);
+			//Tabla para ranking global
+			modeloGlobal = new DefaultTableModel();
+			modeloGlobal.addColumn("Usuario");
+			modeloGlobal.addColumn("Dificultad");
+			modeloGlobal.addColumn("Puntuacion");
+			getTablaGlobal().setModel(modeloGlobal);
+		
+			//Inicializar ranking con todos los niveles
+			actualizarRanking(0);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		support = new PropertyChangeSupport(this);
 		
 	}
 		
-	public void initialize() {
+	public void initialize() throws SQLException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 936, 330);
 		contentPane = new JPanel();
@@ -64,6 +96,11 @@ public class Ranking extends JFrame {
 		contentPane.add(new JScrollPane(getTabla()), BorderLayout.WEST);
 		contentPane.add(new JScrollPane(getTablaGlobal()), BorderLayout.EAST);
 		setTitle("Ranking");
+	}
+	
+	//Observador
+	public void addObserver(PropertyChangeListener pList) {
+		support.addPropertyChangeListener(pList);
 	}
 	
 	private JTable getTabla() {
@@ -106,6 +143,7 @@ public class Ranking extends JFrame {
 		return lblNewLabel;
 	}
 	
+	//Desplegable para filtrar por dificultad
 	private JComboBox getComboBox() {
 		if (comboBox == null) {
 			comboBox = new JComboBox();
@@ -113,6 +151,24 @@ public class Ranking extends JFrame {
 			comboBox.addItem("1");
 			comboBox.addItem("2");
 			comboBox.addItem("3");
+			comboBox.addActionListener(new ActionListener() {
+				
+				public void actionPerformed(ActionEvent e) {
+					int dificultad;
+					try {
+						//SI selecciona "Todo"
+						if(comboBox.getSelectedItem().equals("Todo")) {
+							actualizarRanking(0);
+						}	//SI seleciona los numeros
+						else {
+							dificultad = Integer.parseInt((String) comboBox.getSelectedItem());
+							actualizarRanking(dificultad);
+						}
+					} catch (SQLException e1) {
+							e1.printStackTrace();
+					}
+				}
+			} );
 		}
 		return comboBox;
 	}
@@ -125,6 +181,7 @@ public class Ranking extends JFrame {
 		return panelSurSur;
 	}
 	
+	//BOTON VOLVER
 	private JButton getBtnVolver() {
 		if (btnVolver == null) {
 			btnVolver = new JButton("Volver");
@@ -137,8 +194,94 @@ public class Ranking extends JFrame {
 		return btnVolver;
 	}
 	
+	//accion del boton volver
 	public void volver() {
-		this.setVisible(false);
+		//realiza evento en menu
+		support.firePropertyChange("RankingPuntuaciones", false, true);
+		//elimina la ventana
+		this.dispose();
+	}
+	
+	//Empiece Tablas
+	public void actualizarRanking(int pDificultad) throws SQLException {
+		//Vaciar tabla de puntuaciones global
+		if(modeloGlobal.getRowCount()>0) {
+			modeloGlobal.setRowCount(0);
+		}
+		
+		//Vaciar tabla de puntuaciones personales
+		if(modeloParticular.getRowCount()>0) {
+			modeloParticular.setRowCount(0);
+		}
+		
+		int dificultad=pDificultad;
+		
+		//Iniciar clase GestorArkanoid y los JSONArray que guardaran los JSONObject donde estan las filas de las tablas
+		GestorArkanoid GA= new GestorArkanoid();
+		JsonArray rankingGlobal= new JsonArray();
+		JsonArray rankingPersonal= new JsonArray();
+		
+		//SI has seleccionado "TODO"
+		if(dificultad == 0) {
+			 rankingGlobal = GA.rankingGlobal();
+			 rankingPersonal= GA.rankingPersonal(nombreUsuario);
+		
+		} 
+		//SI seleccionas por "dificultad"
+		else { 
+			rankingGlobal = GA.rankingGlobal(dificultad);
+			rankingPersonal= GA.rankingPersonal(nombreUsuario, dificultad);
+		}
+		
+		String Alerta="ERROR al cargar rankings:";
+		boolean alert= false;
+		
+		//Cargar tabla de puntuaciones globales
+		if(rankingGlobal.size()!=0) {
+			//PARA CADA uno del JSONArray (fila) cargar en tabla
+			for(int i = 0; i<rankingGlobal.size(); i++) {	
+				modeloGlobal.addRow(crearFilaRankingGlobal((JsonObject) rankingGlobal.get(i)));
+			} 
+		} else {
+			//SI NO quiere decir que ha ocurrido un error a la hora de buscar el BD
+			Alerta+=" \n- Global";
+			alert=true;
+		}
+		
+		//Cargar tabla de puntuaciones personales
+		if(rankingPersonal.size()!=0) {
+			for(int i = 0; i<rankingPersonal.size(); i++) {	
+				modeloParticular.addRow(crearFilaRankingPersonal((JsonObject) rankingPersonal.get(i)));
+			} 
+		} else {
+			Alerta+=" \n- Personal";
+			alert=true;
+		}
+		
+		if(alert==true) {
+			JOptionPane.showMessageDialog(null, Alerta, "MENSAJE ERROR", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	
+	//Obtencion de datos de las filas para ranking global
+	private String[] crearFilaRankingGlobal(JsonObject fila) {
+		String[] partes = new String[3];
+		partes[0] = fila.get("usuario").toString();
+		partes[1] = fila.get("dificultad").toString();
+		partes[2] = fila.get("puntos").toString();
+		
+		return partes;
+		
+	}
+	
+	//Obtencion de datos de las filas para ranking particular
+	private String[] crearFilaRankingPersonal(JsonObject fila) {
+		String[] partes = new String[2];
+		partes[0] = fila.get("dificultad").toString();
+		partes[1] = fila.get("puntos").toString();
+		
+		return partes;
+		
 	}
 
 }

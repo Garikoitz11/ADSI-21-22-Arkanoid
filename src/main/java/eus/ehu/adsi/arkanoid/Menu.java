@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.sql.SQLException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -100,6 +101,7 @@ public class Menu extends JFrame implements PropertyChangeListener {
 		panel_1.add(panel_6, BorderLayout.NORTH);
 	}
 	
+	//BOTON JUGAR
 	private JButton getBtnJugar() {
 		if (btnJugar == null) {
 			btnJugar = new JButton("JUGAR");
@@ -154,7 +156,7 @@ public class Menu extends JFrame implements PropertyChangeListener {
 		
 	}
 
-
+	//Boton que genera la pantalla ranking
 	private JButton getBtnRanking() {
 		if (btnRanking == null) {
 			btnRanking = new JButton("Consultar Ranking");
@@ -167,29 +169,45 @@ public class Menu extends JFrame implements PropertyChangeListener {
 		return btnRanking;
 	}
 	
+	//Accion para abrir pantalla ranking
 	public void abrirRanking() {
-		Ranking ranking=new Ranking();
+				String nombre="ramon";//DEFINIR
+		//Crear la ventana ranking
+		Ranking ranking=new Ranking(nombre);
+		//Observador para conocer si pulsas volver
+		ranking.addObserver(this);
+		//Ocultar la pantalla menu
+		this.setVisible(false);
+		//Activar pantalla ranking
 		ranking.setVisible(true);
-		
 	}
 	
 	public boolean getActivo() {
+		//Comprobador para conocer si das a JUGAR
 		return activo;
 	}
 	
+	public void setActivo(boolean pActivo) {
+		//Reiniciar comprobador de jugar
+		activo=pActivo;
+	}
+
 	public void propertyChange(PropertyChangeEvent evt) {
-        if(evt != null) {
+        if(evt != null) {//Evento de dificultad, para volver.
             if(evt.getPropertyName().equals("Dificultad")) {
                 this.setVisible(true);
-				String vdificultad = evt.getNewValue().toString();
-				if (vdificultad.equals("0")){
-					dificultad = 0;
-				} else if (vdificultad.equals("1")) {
-					dificultad = 1;
-				} else {
-					dificultad = 3;
-				}
-            }
+				        String vdificultad = evt.getNewValue().toString();
+				            if (vdificultad.equals("0")){
+					              dificultad = 0;
+				            } else if (vdificultad.equals("1")) {
+					              dificultad = 1;
+				            } else {
+					              dificultad = 3;
+				            }
+          }//Evento de ranking, para volver.
+          else if(evt.getPropertyName().equals("RankingPuntuaciones")){
+              this.setVisible(true);
+          }
         }
 
     }
