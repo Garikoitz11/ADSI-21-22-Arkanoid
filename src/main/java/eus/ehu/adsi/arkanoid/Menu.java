@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.sql.SQLException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -17,6 +18,7 @@ import javax.swing.border.EmptyBorder;
 
 public class Menu extends JFrame implements PropertyChangeListener {
 
+	private String nombreUsuario;
 	private JPanel contentPane;
 	private JButton btnJugar;
 	private JButton btnRanking;
@@ -105,6 +107,7 @@ public class Menu extends JFrame implements PropertyChangeListener {
 		panel_1.add(panel_6, BorderLayout.NORTH);
 	}
 	
+	//BOTON JUGAR
 	private JButton getBtnJugar() {
 		if (btnJugar == null) {
 			btnJugar = new JButton("JUGAR");
@@ -162,7 +165,7 @@ public class Menu extends JFrame implements PropertyChangeListener {
 		
 	}
 
-
+	//Boton que genera la pantalla ranking
 	private JButton getBtnRanking() {
 		if (btnRanking == null) {
 			btnRanking = new JButton("Consultar Ranking");
@@ -175,28 +178,36 @@ public class Menu extends JFrame implements PropertyChangeListener {
 		return btnRanking;
 	}
 	
+	//Accion para abrir pantalla ranking
 	public void abrirRanking() {
-		Ranking ranking=new Ranking();
+		//Crear la ventana ranking
+		Ranking ranking=new Ranking(nombreUsuario);
+		//Observador para conocer si pulsas volver
+		ranking.addObserver(this);
+		//Ocultar la pantalla menu
+		this.setVisible(false);
+		//Activar pantalla ranking
 		ranking.setVisible(true);
-		
 	}
 	
 	public boolean getActivo() {
+		//Comprobador para conocer si das a JUGAR
 		return activo;
 	}
 	
+
 	public void propertyChange(PropertyChangeEvent evt) {
         if(evt != null) {
             if(evt.getPropertyName().equals("Dificultad")) {
                 this.setVisible(true);
-				String vdificultad = evt.getNewValue().toString();
-				if (vdificultad.equals("0")){
-					dificultad = 0;
-				} else if (vdificultad.equals("1")) {
-					dificultad = 1;
-				} else {
-					dificultad = 3;
-				}
+				        String vdificultad = evt.getNewValue().toString();
+				        if (vdificultad.equals("0")){
+					          dificultad = 0;
+				        } else if (vdificultad.equals("1")) {
+					          dificultad = 1;
+				        } else {
+					          dificultad = 3;
+				        }
             } else if(evt.getPropertyName().equals("colorFondo")) {
                 this.setVisible(true);
                 String vcolorFondo = evt.getNewValue().toString();
@@ -212,7 +223,7 @@ public class Menu extends JFrame implements PropertyChangeListener {
                 	colorFondo = Color.white;
                 }else{
                 	colorFondo = Color.black;
-        }
+                }
             }else if(evt.getPropertyName().equals("colorBola")) {
                 this.setVisible(true);
                 String vcolorBola = evt.getNewValue().toString();
@@ -228,7 +239,7 @@ public class Menu extends JFrame implements PropertyChangeListener {
                 	colorBola = Color.white;
                 }else{
                 	colorBola = Color.black;
-        }
+                }
             }else if(evt.getPropertyName().equals("colorPaddle")) {
                 this.setVisible(true);
                 String vcolorPaddle = evt.getNewValue().toString();
@@ -244,8 +255,7 @@ public class Menu extends JFrame implements PropertyChangeListener {
                 	colorPaddle = Color.white;
                 }else{
                 	colorPaddle = Color.black;
-        }System.out.println(colorBola);
-                
+                } 
             }else if(evt.getPropertyName().equals("colorBrick")) {
                 this.setVisible(true);
                 String vcolorBrick = evt.getNewValue().toString();
@@ -261,11 +271,28 @@ public class Menu extends JFrame implements PropertyChangeListener {
                 	colorBrick = Color.white;
                 }else{
                 	colorBrick = Color.black;
-        } 
-            }
-            }
+                }
+            }else if(evt.getPropertyName().equals("Dificultad")) {//Evento de dificultad, para volver.
+                this.setVisible(true);
+				        String vdificultad = evt.getNewValue().toString();
+				            if (vdificultad.equals("0")){
+					              dificultad = 0;
+				            } else if (vdificultad.equals("1")) {
+					              dificultad = 1;
+				            } else {
+					              dificultad = 2;
+				            }
+          }//Evento de ranking, para volver.
+          else if(evt.getPropertyName().equals("RankingPuntuaciones")){
+              this.setVisible(true);
+          }
+        }
     }
 
+	public void setActivo(boolean pActivo) {
+		//Reiniciar comprobador de jugar
+		activo=pActivo;
+	}
 	public int getDificultad() {
 		return dificultad;
 	}
@@ -285,4 +312,9 @@ public class Menu extends JFrame implements PropertyChangeListener {
 	public Color getColorBrick() {
 		return colorBrick;
 	}
+
+	public void setNombreUsuario(String nom) {
+		nombreUsuario=nom;
+	}
+
 }

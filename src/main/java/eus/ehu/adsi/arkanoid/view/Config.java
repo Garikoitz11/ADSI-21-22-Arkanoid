@@ -163,5 +163,4 @@ public abstract class Config {
 			return BRICK_COLOR_BLACK;
 		}
 	}
-	
 }

@@ -9,15 +9,18 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferStrategy;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import controlador.GestorArkanoid;
 import eus.ehu.adsi.arkanoid.view.Ball;
 import eus.ehu.adsi.arkanoid.view.Config;
 import eus.ehu.adsi.arkanoid.view.Paddle;
@@ -40,6 +43,9 @@ public class Arkanoid extends JFrame implements KeyListener {
 
 	private double lastFt;
 	private double currentSlice;	
+
+	private int d;
+  private boolean count=false;
 	
 	private int d;
 	private Color c;
@@ -62,11 +68,11 @@ public class Arkanoid extends JFrame implements KeyListener {
 		this.setLocationRelativeTo(null);
 		this.createBufferStrategy(2);
 
-		bricks = Game.initializeBricks(bricks);
+		//bricks = Game.initializeBricks(bricks, d);
 
 	}
 	
-	void run() {
+	void run() throws SQLException {
 
 		BufferStrategy bf = this.getBufferStrategy();
 		Graphics g = bf.getDrawGraphics();
@@ -74,6 +80,8 @@ public class Arkanoid extends JFrame implements KeyListener {
 		g.fillRect(0, 0, getWidth(), getHeight());
 		
 		game.setRunning(true);
+		
+		count=false;
 
 		while (game.isRunning()) {
 
@@ -96,8 +104,16 @@ public class Arkanoid extends JFrame implements KeyListener {
 				if (game.isTryAgain()) {
 					logger.info("Trying again");
 					game.setTryAgain(false);
-					bricks = Game.initializeBricks(bricks);
+					bricks = Game.initializeBricks(bricks, d);
 					scoreboard.lives = Config.PLAYER_LIVES;
+					
+					//Registrar puntuacion con usuario y dificultad, si da la casualidad de dar ENTER
+					if(count==false) {
+						String usu="unai";//DEFINIR
+						GestorArkanoid GA= new GestorArkanoid();
+						GA.anadirRanking(d+1, usu, scoreboard.score); //FALTA POR DEFINIR usu
+					}
+					
 					scoreboard.score = 0;
 					scoreboard.win = false;
 					scoreboard.gameOver = false;
@@ -105,7 +121,17 @@ public class Arkanoid extends JFrame implements KeyListener {
 					ball.x = Config.SCREEN_WIDTH / 2;
 					ball.y = Config.SCREEN_HEIGHT / 2;
 					paddle.x = Config.SCREEN_WIDTH / 2;
+					
+					count=false;
+					
+				}else if (count==false) {
+					String usu="unai";//DEFINIR
+					GestorArkanoid GA= new GestorArkanoid();
+					GA.anadirRanking(d+1, usu, scoreboard.score); //FALTA POR DEFINIR usu
+					
+					count=true;
 				}
+				
 			}
 
 			long time2 = System.currentTimeMillis();
@@ -120,8 +146,22 @@ public class Arkanoid extends JFrame implements KeyListener {
 			}
 
 		}
-
-		this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+		
+		JOptionPane.showMessageDialog(null, "¿Estas seguro de querer abandonar?", "MENSAJE ERROR", JOptionPane.ERROR_MESSAGE);
+		
+		game.setTryAgain(false);
+		bricks = Game.initializeBricks(bricks, d);
+		scoreboard.lives = Config.PLAYER_LIVES;
+		
+		scoreboard.score = 0;
+		scoreboard.win = false;
+		scoreboard.gameOver = false;
+		scoreboard.updateScoreboard();
+		ball.x = Config.SCREEN_WIDTH / 2;
+		ball.y = Config.SCREEN_HEIGHT / 2;
+		paddle.x = Config.SCREEN_WIDTH / 2;
+		
+		this.setVisible(false);
 
 	}
 
@@ -131,14 +171,14 @@ public class Arkanoid extends JFrame implements KeyListener {
 
 		for (; currentSlice >= Config.FT_SLICE; currentSlice -= Config.FT_SLICE) {
 
-			ball.update(scoreboard, paddle);
+			ball.update(scoreboard, paddle, d);
 			paddle.update();
-			Game.testCollision(paddle, ball);
+			Game.testCollision(paddle, ball, d);
 
 			Iterator<Brick> it = bricks.iterator();
 			while (it.hasNext()) {
 				Brick brick = it.next();
-				Game.testCollision(brick, ball, scoreboard);
+				Game.testCollision(brick, ball, scoreboard, d);
 				if (brick.destroyed) {
 					it.remove();
 				}
@@ -220,4 +260,10 @@ public class Arkanoid extends JFrame implements KeyListener {
 	public void setColorBrick(Color colorBrick) {
 		c3 = colorBrick;
 	}	
+
+	public void setDificultad(int dificultad) {
+		d = dificultad;
+		bricks = Game.initializeBricks(bricks, d);
+	}
+
 }

@@ -9,10 +9,12 @@ public class Ball extends GameObject {
 	public double y;
 	double radius = Config.BALL_RADIUS;
 	public int d;
+  
 	public int colorBola;
 	public double velocityX = Config.getVelocidadBola(d);
 	public double velocityY = Config.getVelocidadBola(d);
 	public Color color1 = Config.getColorBola(colorBola);
+
 	public Ball(int x, int y) {
 		this.x = x;
 		this.y = y;
