@@ -19,9 +19,9 @@ public class ScoreBoard {
 		text = "Welcome to Arkanoid";
 	}
 
-	public void increaseScore() {
+	public void increaseScore(int d) {
 		score++;
-		if (score == (Config.COUNT_BLOCKS_X * Config.COUNT_BLOCKS_Y)) {
+		if (score == (Config.getBloquesX(d) * Config.getBloquesY(d))) {
 			win = true;
 			text = "You have won! \nYour score was: " + score
 					+ "\n\nPress Enter to restart";

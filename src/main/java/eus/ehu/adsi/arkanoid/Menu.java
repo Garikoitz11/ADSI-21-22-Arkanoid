@@ -23,6 +23,7 @@ public class Menu extends JFrame implements PropertyChangeListener {
 	private JButton btnDificultad;
 	private JButton btnPersonalizacion;
 	private Boolean activo= false; //comprobador para App
+	public static int dificultad = 0;
 
 	/**
 	 * Launch the application.
@@ -120,6 +121,7 @@ public class Menu extends JFrame implements PropertyChangeListener {
 			btnDificultad.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					abrirDificultad();
+					setVisible(false);
 				}
 			});
 		}
@@ -128,9 +130,13 @@ public class Menu extends JFrame implements PropertyChangeListener {
 	
 	public void abrirDificultad() {
 		Dificultad dificultad=new Dificultad();
+		dificultad.addObserver(this);
+		this.setVisible(false);
 		dificultad.setVisible(true);
 		
 	}
+
+
 	
 	private JButton getBtnPersonalizacion() {
 		if (btnPersonalizacion == null) {
@@ -185,15 +191,29 @@ public class Menu extends JFrame implements PropertyChangeListener {
 		//Reiniciar comprobador de jugar
 		activo=pActivo;
 	}
-	
+
 	public void propertyChange(PropertyChangeEvent evt) {
-		if(evt != null) {
-			//Evento de ranking, para volver.
-			if(evt.getPropertyName().equals("RankingPuntuaciones")) {
-				this.setVisible(true);
-			}
-		}
+        if(evt != null) {//Evento de dificultad, para volver.
+            if(evt.getPropertyName().equals("Dificultad")) {
+                this.setVisible(true);
+				        String vdificultad = evt.getNewValue().toString();
+				            if (vdificultad.equals("0")){
+					              dificultad = 0;
+				            } else if (vdificultad.equals("1")) {
+					              dificultad = 1;
+				            } else {
+					              dificultad = 3;
+				            }
+          }//Evento de ranking, para volver.
+          else if(evt.getPropertyName().equals("RankingPuntuaciones")){
+              this.setVisible(true);
+          }
+        }
+
+    }
+
+	public int getDificultad() {
+		return dificultad;
 	}
 
 }
-
