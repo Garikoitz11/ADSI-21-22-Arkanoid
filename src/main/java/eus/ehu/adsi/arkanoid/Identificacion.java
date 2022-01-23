@@ -3,6 +3,9 @@ package eus.ehu.adsi.arkanoid;
 import javax.swing.JFrame;
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.FlowLayout;
+
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -27,12 +30,13 @@ public class Identificacion extends JFrame {
 	private GestorArkanoid gestorArkanoid;
 	public Identificacion() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(500, 200, 459, 378);
+        setBounds(500, 200, 354, 275);
         setResizable(false);
         
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		
 		JPanel Titulo = new JPanel();
+		Titulo.setBackground(new Color(32, 178, 170));
 		getContentPane().add(Titulo, BorderLayout.NORTH);
 		
 		JLabel lblIdentificacin = new JLabel("IDENTIFICACION");
@@ -40,6 +44,7 @@ public class Identificacion extends JFrame {
 		Titulo.add(lblIdentificacin);
 		
 		JPanel Abajo = new JPanel();
+		Abajo.setBackground(new Color(32, 178, 170));
 		getContentPane().add(Abajo, BorderLayout.SOUTH);
 		
 		JButton btnNewButton = new JButton("Recuperar contrasena");
@@ -57,27 +62,12 @@ public class Identificacion extends JFrame {
 				cc.setVisible(true);
 			}
 		});
-		GroupLayout gl_Abajo = new GroupLayout(Abajo);
-		gl_Abajo.setHorizontalGroup(
-			gl_Abajo.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, gl_Abajo.createSequentialGroup()
-					.addContainerGap(36, Short.MAX_VALUE)
-					.addComponent(btnNewButton)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(btnCambiarContrasea)
-					.addGap(42))
-		);
-		gl_Abajo.setVerticalGroup(
-			gl_Abajo.createParallelGroup(Alignment.TRAILING)
-				.addGroup(Alignment.LEADING, gl_Abajo.createSequentialGroup()
-					.addGroup(gl_Abajo.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnNewButton)
-						.addComponent(btnCambiarContrasea))
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-		);
-		Abajo.setLayout(gl_Abajo);
+		Abajo.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		Abajo.add(btnNewButton);
+		Abajo.add(btnCambiarContrasea);
 		
 		JPanel Cuerpo = new JPanel();
+		Cuerpo.setBackground(new Color(32, 178, 170));
 		getContentPane().add(Cuerpo, BorderLayout.CENTER);
 		
 		JLabel lblNewLabel = new JLabel("Usuario");
@@ -115,42 +105,38 @@ public class Identificacion extends JFrame {
 		gl_Cuerpo.setHorizontalGroup(
 			gl_Cuerpo.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_Cuerpo.createSequentialGroup()
+					.addContainerGap(64, Short.MAX_VALUE)
+					.addGroup(gl_Cuerpo.createParallelGroup(Alignment.TRAILING)
+						.addComponent(lblNewLabel)
+						.addComponent(lblContrasea))
+					.addGap(18)
 					.addGroup(gl_Cuerpo.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_Cuerpo.createSequentialGroup()
-							.addGap(112)
-							.addGroup(gl_Cuerpo.createParallelGroup(Alignment.TRAILING, false)
-								.addGroup(gl_Cuerpo.createSequentialGroup()
-									.addComponent(lblContrasea)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-								.addGroup(gl_Cuerpo.createSequentialGroup()
-									.addGap(12)
-									.addComponent(lblNewLabel)
-									.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-									.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
-						.addGroup(gl_Cuerpo.createSequentialGroup()
-							.addGap(163)
-							.addGroup(gl_Cuerpo.createParallelGroup(Alignment.LEADING, false)
-								.addComponent(btnRegistrarse, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(btnIniciarSesin, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-					.addContainerGap(138, Short.MAX_VALUE))
+						.addComponent(textField_1, GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+						.addComponent(textField, GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE))
+					.addGap(64))
+				.addGroup(gl_Cuerpo.createSequentialGroup()
+					.addGap(107)
+					.addGroup(gl_Cuerpo.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnRegistrarse, GroupLayout.PREFERRED_SIZE, 124, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnIniciarSesin, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(184, Short.MAX_VALUE))
 		);
 		gl_Cuerpo.setVerticalGroup(
 			gl_Cuerpo.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_Cuerpo.createSequentialGroup()
-					.addGap(61)
+					.addContainerGap()
 					.addGroup(gl_Cuerpo.createParallelGroup(Alignment.BASELINE)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(textField)
 						.addComponent(lblNewLabel))
-					.addGap(18)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_Cuerpo.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblContrasea)
-						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblContrasea, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
-					.addComponent(btnIniciarSesin)
+					.addComponent(btnIniciarSesin, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(btnRegistrarse)
-					.addContainerGap(61, Short.MAX_VALUE))
+					.addComponent(btnRegistrarse, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+					.addGap(29))
 		);
 		Cuerpo.setLayout(gl_Cuerpo);
 	}

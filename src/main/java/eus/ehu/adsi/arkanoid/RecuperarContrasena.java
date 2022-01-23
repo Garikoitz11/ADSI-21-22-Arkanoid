@@ -3,6 +3,8 @@ package eus.ehu.adsi.arkanoid;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
+import java.awt.Color;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -24,10 +26,11 @@ public class RecuperarContrasena extends JFrame {
 	public RecuperarContrasena() {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(500, 200, 459, 378);
-        setResizable(false);
+		setBounds(500, 200, 453, 200);
+		setResizable(false);
 		
 		JPanel Arriba = new JPanel();
+		Arriba.setBackground(new Color(32, 178, 170));
 		getContentPane().add(Arriba, BorderLayout.NORTH);
 		
 		JLabel lblNewLabel = new JLabel("RECUPERAR CONTRASENA");
@@ -35,21 +38,43 @@ public class RecuperarContrasena extends JFrame {
 		Arriba.add(lblNewLabel);
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(new Color(32, 178, 170));
 		getContentPane().add(panel, BorderLayout.CENTER);
 		
 		JLabel lblIntroduceTuNombre = new JLabel("Introduce tu Email o nombre de usuario");
 		
 		textField = new JTextField();
 		textField.setColumns(10);
+		GroupLayout gl_panel = new GroupLayout(panel);
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.TRAILING)
+				.addGroup(Alignment.LEADING, gl_panel.createSequentialGroup()
+					.addGap(127)
+					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING, false)
+						.addComponent(textField, Alignment.LEADING)
+						.addComponent(lblIntroduceTuNombre, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+					.addContainerGap(132, Short.MAX_VALUE))
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(19)
+					.addComponent(lblIntroduceTuNombre)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(31, Short.MAX_VALUE))
+		);
+		panel.setLayout(gl_panel);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(32, 178, 170));
+		getContentPane().add(panel_1, BorderLayout.SOUTH);
 		
 		JButton btnNewButton = new JButton("Volver");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				ocultar();
-			}
-		});
+		panel_1.add(btnNewButton);
 		
 		JButton btnRecuperar = new JButton("Recuperar");
+		panel_1.add(btnRecuperar);
 		btnRecuperar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				GestorArkanoid arkanoid = new GestorArkanoid();
@@ -63,41 +88,15 @@ public class RecuperarContrasena extends JFrame {
 				}
 			}
 		});
-		GroupLayout gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(164)
-					.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(145, Short.MAX_VALUE))
-				.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
-					.addContainerGap(90, Short.MAX_VALUE)
-					.addComponent(lblIntroduceTuNombre)
-					.addGap(81))
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(74)
-					.addComponent(btnNewButton)
-					.addGap(49)
-					.addComponent(btnRecuperar)
-					.addContainerGap(93, Short.MAX_VALUE))
-		);
-		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(19)
-					.addComponent(lblIntroduceTuNombre)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(32)
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnNewButton)
-						.addComponent(btnRecuperar))
-					.addContainerGap(103, Short.MAX_VALUE))
-		);
-		panel.setLayout(gl_panel);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ocultar();
+			}
+		});
 	}
 	
 	public void ocultar() {
 		this.setVisible(false);
 	}
 }
+
