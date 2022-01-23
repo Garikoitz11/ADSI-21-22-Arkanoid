@@ -7,7 +7,10 @@ public abstract class Config {
 	public static final int SCREEN_WIDTH = 800;
 	public static final int SCREEN_HEIGHT = 600;
 
-	public static final double BALL_RADIUS = 10.0;
+	public static final double BALL_RADIUS0 = 5.0;
+	public static final double BALL_RADIUS1 = 10.0;
+	public static final double BALL_RADIUS2 = 15.0;
+
 	public static final double BALL_VELOCITY0 = 0.2;
 	public static final double BALL_VELOCITY1 = 0.3;
 	public static final double BALL_VELOCITY2 = 0.4;
@@ -95,6 +98,15 @@ public abstract class Config {
 		}
 	}
 	
+	public static double getTamanoBola(int t){
+		if (t==0) {
+			return BALL_RADIUS0;
+		} else if (t==1) {
+			return BALL_RADIUS1;
+		} else {
+			return BALL_RADIUS2;
+		}
+	}
 	public static Color getColorFondo(int colorFondo) {
 		if(colorFondo==0) {
 			return BACKGROUND_COLOR_R;

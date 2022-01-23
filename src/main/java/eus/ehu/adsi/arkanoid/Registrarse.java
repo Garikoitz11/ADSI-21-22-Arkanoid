@@ -18,6 +18,7 @@ import controlador.GestorArkanoid;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class Registrarse extends JFrame {
 	private JTextField textField;
@@ -25,13 +26,18 @@ public class Registrarse extends JFrame {
 	private JTextField textField_2;
 	private JTextField textField_3;
 	public Registrarse() {
+		initialize();
+	}
+	private void initialize() {
+		getContentPane().setBackground(new Color(95, 158, 160));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(500, 200, 459, 378);
-        setResizable(false);
-        
+		setBounds(500, 200, 371, 247);
+		setResizable(false);
+		
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		
 		JPanel Arriba = new JPanel();
+		Arriba.setBackground(new Color(32, 178, 170));
 		getContentPane().add(Arriba, BorderLayout.NORTH);
 		Arriba.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
@@ -40,10 +46,34 @@ public class Registrarse extends JFrame {
 		Arriba.add(lblRegistrarse);
 		
 		JPanel Abajo = new JPanel();
+		Abajo.setBackground(new Color(32, 178, 170));
 		getContentPane().add(Abajo, BorderLayout.SOUTH);
 		Abajo.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
+		JButton btnNewButton_1 = new JButton("Volver");
+		Abajo.add(btnNewButton_1);
+		
+		JButton btnNewButton = new JButton("Registrarse");
+		Abajo.add(btnNewButton);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				GestorArkanoid GA = new GestorArkanoid();
+				if(GA.contrasenaIgual(textField.getText(), textField_1.getText(), textField_2.getText(), textField_3.getText())) {
+					ocultar();
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "No ha sido posible registrarse", "ERORR AL REGISTRARSE", JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		});
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ocultar();
+			}
+		});
+		
 		JPanel Medio = new JPanel();
+		Medio.setBackground(new Color(32, 178, 170));
 		getContentPane().add(Medio, BorderLayout.CENTER);
 		
 		JLabel lblNewLabel = new JLabel("Nombre de usuario");
@@ -65,75 +95,52 @@ public class Registrarse extends JFrame {
 		
 		textField_3 = new JTextField();
 		textField_3.setColumns(10);
-		
-		JButton btnNewButton = new JButton("Registrarse");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				GestorArkanoid GA = new GestorArkanoid();
-				if(GA.contrasenaIgual(textField.getText(), textField_1.getText(), textField_2.getText(), textField_3.getText())) {
-					ocultar();
-				}
-				else {
-					JOptionPane.showMessageDialog(null, "No ha sido posible registrarse", "ERORR AL REGISTRARSE", JOptionPane.ERROR_MESSAGE);
-				}
-			}
-		});
-		
-		JButton btnNewButton_1 = new JButton("Volver");
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				ocultar();
-			}
-		});
 		GroupLayout gl_Medio = new GroupLayout(Medio);
 		gl_Medio.setHorizontalGroup(
 			gl_Medio.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_Medio.createSequentialGroup()
-					.addContainerGap(77, Short.MAX_VALUE)
+					.addGap(67)
 					.addGroup(gl_Medio.createParallelGroup(Alignment.TRAILING)
 						.addGroup(gl_Medio.createSequentialGroup()
-							.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
-							.addGap(8))
-						.addGroup(gl_Medio.createSequentialGroup()
-							.addGroup(gl_Medio.createParallelGroup(Alignment.LEADING)
+							.addGroup(gl_Medio.createParallelGroup(Alignment.TRAILING)
 								.addComponent(lblCorreoEletrnico)
-								.addComponent(lblContrasea)
-								.addComponent(lblRepetirContrasea)
-								.addComponent(lblNewLabel))
-							.addPreferredGap(ComponentPlacement.RELATED)))
-					.addGap(30)
+								.addComponent(lblNewLabel)
+								.addComponent(lblContrasea))
+							.addGap(18))
+						.addGroup(gl_Medio.createSequentialGroup()
+							.addComponent(lblRepetirContrasea)
+							.addPreferredGap(ComponentPlacement.UNRELATED)))
 					.addGroup(gl_Medio.createParallelGroup(Alignment.LEADING)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnNewButton))
-					.addGap(89))
+						.addComponent(textField_1, 126, 126, 126)
+						.addComponent(textField_3, 126, 126, 126)
+						.addGroup(gl_Medio.createSequentialGroup()
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(textField_2, 126, 126, 126))
+						.addGroup(gl_Medio.createSequentialGroup()
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(textField, 126, 126, 126)))
+					.addContainerGap())
 		);
 		gl_Medio.setVerticalGroup(
-			gl_Medio.createParallelGroup(Alignment.TRAILING)
+			gl_Medio.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_Medio.createSequentialGroup()
-					.addGap(27)
-					.addGroup(gl_Medio.createParallelGroup(Alignment.BASELINE)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblNewLabel))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_Medio.createParallelGroup(Alignment.BASELINE)
-						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblCorreoEletrnico))
-					.addGap(12)
-					.addGroup(gl_Medio.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblContrasea)
-						.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGap(15)
 					.addGroup(gl_Medio.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblRepetirContrasea)
-						.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+						.addComponent(lblNewLabel)
+						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_Medio.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnNewButton_1)
-						.addComponent(btnNewButton))
-					.addGap(20))
+						.addComponent(lblCorreoEletrnico)
+						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_Medio.createParallelGroup(Alignment.BASELINE)
+						.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblContrasea))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_Medio.createParallelGroup(Alignment.BASELINE)
+						.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblRepetirContrasea))
+					.addContainerGap(23, Short.MAX_VALUE))
 		);
 		Medio.setLayout(gl_Medio);
 	}

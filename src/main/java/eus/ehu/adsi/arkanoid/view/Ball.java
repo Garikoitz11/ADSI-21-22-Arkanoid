@@ -7,9 +7,9 @@ public class Ball extends GameObject {
 
 	public double x;
 	public double y;
-	double radius = Config.BALL_RADIUS;
 	public int d;
-  
+	public int t;
+	double radius = Config.getTamanoBola(t);
 	public int colorBola;
 	public double velocityX = Config.getVelocidadBola(d);
 	public double velocityY = Config.getVelocidadBola(d);
@@ -59,7 +59,4 @@ public class Ball extends GameObject {
 	public double bottom() {
 		return y + radius;
 	}
-	/*public void setColorBola(Color colorBola) {
-		colorBola = c1;
-	}*/
 }

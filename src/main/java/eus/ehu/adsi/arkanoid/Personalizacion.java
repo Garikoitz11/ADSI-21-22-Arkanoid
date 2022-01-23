@@ -39,7 +39,7 @@ import java.awt.event.MouseEvent;
 public class Personalizacion extends JFrame {
 
 	private JPanel contentPane;
-	private JPanel Título;
+	private JPanel TÃ­tulo;
 	private JPanel Contenido;
 	private JPanel Volver;
 	private JLabel Titulillo;
@@ -59,6 +59,7 @@ public class Personalizacion extends JFrame {
 	public int colorBola;
 	public int colorPaddle;
 	public int colorBrick;
+	public int tamano;
 	private PropertyChangeSupport support;
 	private JButton btnSonido;
 	/**
@@ -84,7 +85,7 @@ public class Personalizacion extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
-		contentPane.add(getTítulo(), BorderLayout.NORTH);
+		contentPane.add(getTÃ­tulo(), BorderLayout.NORTH);
 		contentPane.add(getContenido(), BorderLayout.CENTER);
 		contentPane.add(getVolver(), BorderLayout.SOUTH);
 		setTitle("Personalizacion");
@@ -95,13 +96,13 @@ public class Personalizacion extends JFrame {
 	}
 
 
-	private JPanel getTítulo() {
-		if (Título == null) {
-			Título = new JPanel();
-			Título.setBackground(new Color(32, 178, 170));
-			Título.add(getTitulillo());
+	private JPanel getTÃ­tulo() {
+		if (TÃ­tulo == null) {
+			TÃ­tulo = new JPanel();
+			TÃ­tulo.setBackground(new Color(32, 178, 170));
+			TÃ­tulo.add(getTitulillo());
 		}
-		return Título;
+		return TÃ­tulo;
 	}
 	private JPanel getContenido() {
 		if (Contenido == null) {
@@ -271,7 +272,21 @@ public class Personalizacion extends JFrame {
 	private JComboBox getComboBox_1_2() {
 		if (comboBox_1 == null) {
 			comboBox_1 = new JComboBox();
-			comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Pequena", "Mediana", "Grande"}));
+			comboBox_1.addItem("1. Pequena");
+			comboBox_1.addItem("2. Normal");
+			comboBox_1.addItem("3. Grande");
+			comboBox_1.addActionListener(new ActionListener() {
+
+                public void actionPerformed(ActionEvent e) {
+							if(comboBox_1.getSelectedItem().equals("1. Pequena")) {
+								tamano = 0;
+							} else if(comboBox_1.getSelectedItem().equals("2. Normal")) {
+								tamano = 1;
+							} else {
+								tamano = 2;
+							}
+                    } 
+            } );
 		}
 		return comboBox_1;
 	}
@@ -382,6 +397,7 @@ public class Personalizacion extends JFrame {
     }
 
 	public void volver() {
+		support.firePropertyChange("Tamano", false, "tamano" );
 		support.firePropertyChange("colorFondo", false, colorFondo);
 		support.firePropertyChange("colorBola", false, colorBola);
 		support.firePropertyChange("colorPaddle", false, colorPaddle);

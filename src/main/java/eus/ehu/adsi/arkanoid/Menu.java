@@ -26,6 +26,7 @@ public class Menu extends JFrame implements PropertyChangeListener {
 	private JButton btnPersonalizacion;
 	private Boolean activo= false; //comprobador para App
 	public static int dificultad = 0;
+	public static int tamano = 2;
 	public static Color colorFondo = Color.black;
 	public static Color colorBola = Color.green;
 	public static Color colorPaddle = Color.white;
@@ -53,28 +54,34 @@ public class Menu extends JFrame implements PropertyChangeListener {
 	public Menu() {
 		setTitle("Menu");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 367, 227);
+		setBounds(465, 250, 367, 227);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(95, 158, 160));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(new Color(32, 178, 170));
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel_4 = new JPanel();
+		panel_4.setBackground(new Color(32, 178, 170));
 		panel.add(panel_4, BorderLayout.NORTH);
 		
 		JPanel panel_5 = new JPanel();
+		panel_5.setBackground(new Color(32, 178, 170));
 		panel.add(panel_5, BorderLayout.CENTER);
 		panel_5.add(getBtnJugar());
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(32, 178, 170));
 		contentPane.add(panel_1, BorderLayout.SOUTH);
 		panel_1.setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(new Color(32, 178, 170));
 		panel_1.add(panel_2, BorderLayout.CENTER);
 		
 		panel_2.add(getBtnDificultad());
@@ -82,17 +89,21 @@ public class Menu extends JFrame implements PropertyChangeListener {
 		panel_2.add(getBtnPersonalizacion());
 		
 		JPanel panel_3 = new JPanel();
+		panel_3.setBackground(new Color(32, 178, 170));
 		panel_1.add(panel_3, BorderLayout.SOUTH);
 		panel_3.setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel_7 = new JPanel();
+		panel_7.setBackground(new Color(32, 178, 170));
 		panel_3.add(panel_7, BorderLayout.SOUTH);
 		panel_7.setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel_9 = new JPanel();
+		panel_9.setBackground(new Color(32, 178, 170));
 		panel_7.add(panel_9, BorderLayout.NORTH);
 		
 		JPanel panel_8 = new JPanel();
+		panel_8.setBackground(new Color(32, 178, 170));
 		panel_3.add(panel_8, BorderLayout.CENTER);
 		
 		panel_8.add(getBtnRanking());
@@ -101,9 +112,11 @@ public class Menu extends JFrame implements PropertyChangeListener {
 		panel_8.add(btnPremios);
 		
 		JPanel panel_10 = new JPanel();
+		panel_10.setBackground(new Color(32, 178, 170));
 		panel_3.add(panel_10, BorderLayout.NORTH);
 		
 		JPanel panel_6 = new JPanel();
+		panel_6.setBackground(new Color(32, 178, 170));
 		panel_1.add(panel_6, BorderLayout.NORTH);
 	}
 	
@@ -208,7 +221,17 @@ public class Menu extends JFrame implements PropertyChangeListener {
 				        } else {
 					          dificultad = 2;
 				        }
-            } else if(evt.getPropertyName().equals("colorFondo")) {
+            } if(evt.getPropertyName().equals("Tamano")) {
+                this.setVisible(true);
+				        String vtamano = evt.getNewValue().toString();
+				        if (vtamano.equals("0")){
+					          tamano = 0;
+				        } else if (vtamano.equals("1")) {
+					          tamano = 1;
+				        } else {
+					          tamano = 2;
+				        }
+            }else if(evt.getPropertyName().equals("colorFondo")) {
                 this.setVisible(true);
                 String vcolorFondo = evt.getNewValue().toString();
                 if(vcolorFondo.equals("0")) {
@@ -285,6 +308,10 @@ public class Menu extends JFrame implements PropertyChangeListener {
 	}
 	public int getDificultad() {
 		return dificultad;
+	}
+	
+	public int getTamano() {
+		return tamano;
 	}
 	
 	public Color getColorFondo() {

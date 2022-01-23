@@ -63,6 +63,9 @@ public class App {
     //Esconder Pantalla menu
 		menu.setVisible(false);
 		
+		int tamano = menu.getTamano();
+		arkanoid.setTamano(tamano);
+		
 		Color colorBola = menu.getColorBola();
 		arkanoid.setColorBola(colorBola);
 		
