@@ -4,12 +4,22 @@ import java.sql.SQLException;
 
 public class App {
 	
+	public static Identificacion identificarse;
 	public static Menu menu;
 	public static Arkanoid arkanoid;
 	
 	public static void main(String[] args) {
+		identificarse = new Identificacion();
 		menu=new Menu();
 		arkanoid=new Arkanoid();
+		
+		identificarse.setVisible(true);
+		arkanoid.setVisible(false);
+		
+		while(identificarse.getActivo()==true) {
+			menu.setVisible(false);	
+		}
+		identificarse.setVisible(false);
 		
 		boolean prueba=true;
 		while(prueba==true) {
@@ -25,10 +35,8 @@ public class App {
 	
 	public static void EME() throws SQLException { //para futuro
 		arkanoid.setVisible(false);
-		menu.setVisible(true);
-		
+        menu.setVisible(true);
 		menu.setActivo(false);
-		
 		while(menu.getActivo()==false){
 			arkanoid.setVisible(false);
 		}
