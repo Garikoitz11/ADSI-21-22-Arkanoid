@@ -45,9 +45,8 @@ public class Arkanoid extends JFrame implements KeyListener {
 	private double currentSlice;	
 
 	private int d;
-  private boolean count=false;
+    private boolean count=false;
 	
-	private int d;
 	private Color c;
 	private Color c1;
 	private Color c2;
@@ -147,7 +146,7 @@ public class Arkanoid extends JFrame implements KeyListener {
 
 		}
 		
-		JOptionPane.showMessageDialog(null, "Â¿Estas seguro de querer abandonar?", "MENSAJE ERROR", JOptionPane.ERROR_MESSAGE);
+		JOptionPane.showMessageDialog(null, "¿Estas seguro de querer abandonar? \nSe perdera la puntuacion obtenida", "Abandonar", JOptionPane.QUESTION_MESSAGE);
 		
 		game.setTryAgain(false);
 		bricks = Game.initializeBricks(bricks, d);

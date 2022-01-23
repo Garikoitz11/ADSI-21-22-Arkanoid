@@ -206,7 +206,7 @@ public class Menu extends JFrame implements PropertyChangeListener {
 				        } else if (vdificultad.equals("1")) {
 					          dificultad = 1;
 				        } else {
-					          dificultad = 3;
+					          dificultad = 2;
 				        }
             } else if(evt.getPropertyName().equals("colorFondo")) {
                 this.setVisible(true);
@@ -272,16 +272,6 @@ public class Menu extends JFrame implements PropertyChangeListener {
                 }else{
                 	colorBrick = Color.black;
                 }
-            }else if(evt.getPropertyName().equals("Dificultad")) {//Evento de dificultad, para volver.
-                this.setVisible(true);
-				        String vdificultad = evt.getNewValue().toString();
-				            if (vdificultad.equals("0")){
-					              dificultad = 0;
-				            } else if (vdificultad.equals("1")) {
-					              dificultad = 1;
-				            } else {
-					              dificultad = 2;
-				            }
           }//Evento de ranking, para volver.
           else if(evt.getPropertyName().equals("RankingPuntuaciones")){
               this.setVisible(true);

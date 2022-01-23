@@ -14,8 +14,8 @@ public class rankingTests {
 	
 	private static final Logger logger = LogManager.getLogger(rankingTests.class);
 
-	@Test
-	public F5T1 () {
+	//@Test
+	/*public F5T1 () {
 		
-	}
+	}*/
 }

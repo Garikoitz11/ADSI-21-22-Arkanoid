@@ -44,7 +44,7 @@ public class Personalizacion extends JFrame {
 	private JPanel Volver;
 	private JLabel Titulillo;
 	private JLabel ColordePaddle;
-	private JLabel Tama�odebola;
+	private JLabel Tamanodebola;
 	private JLabel Colordefondo;
 	private JLabel Colordebola;
 	private JComboBox comboBox;
@@ -117,7 +117,7 @@ public class Personalizacion extends JFrame {
 								.addPreferredGap(ComponentPlacement.RELATED)
 								.addComponent(getComboBox_1(), GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE))
 							.addGroup(gl_Contenido.createSequentialGroup()
-								.addComponent(getTama�odebola(), GroupLayout.PREFERRED_SIZE, 224, GroupLayout.PREFERRED_SIZE)
+								.addComponent(getTamanodebola(), GroupLayout.PREFERRED_SIZE, 224, GroupLayout.PREFERRED_SIZE)
 								.addPreferredGap(ComponentPlacement.RELATED)
 								.addComponent(getComboBox_1_2(), GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE))
 							.addGroup(gl_Contenido.createSequentialGroup()
@@ -146,7 +146,7 @@ public class Personalizacion extends JFrame {
 							.addComponent(getComboBox_1(), GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 						.addPreferredGap(ComponentPlacement.RELATED)
 						.addGroup(gl_Contenido.createParallelGroup(Alignment.BASELINE)
-							.addComponent(getTama�odebola(), GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
+							.addComponent(getTamanodebola(), GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
 							.addComponent(getComboBox_1_2(), GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_Contenido.createParallelGroup(Alignment.BASELINE)
 							.addComponent(getColordebola(), GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
@@ -203,12 +203,12 @@ public class Personalizacion extends JFrame {
 		}
 		return ColordePaddle;
 	}
-	private JLabel getTama�odebola() {
-		if (Tama�odebola == null) {
-			Tama�odebola = new JLabel("Tamano de bola");
-			Tama�odebola.setHorizontalAlignment(SwingConstants.RIGHT);
+	private JLabel getTamanodebola() {
+		if (Tamanodebola == null) {
+			Tamanodebola = new JLabel("Tamano de bola");
+			Tamanodebola.setHorizontalAlignment(SwingConstants.RIGHT);
 		}
-		return Tama�odebola;
+		return Tamanodebola;
 	}
 	private JLabel getColordefondo() {
 		if (Colordefondo == null) {

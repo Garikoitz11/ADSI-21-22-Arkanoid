@@ -35,7 +35,7 @@ public class CambiarContrasena extends JFrame {
 		getContentPane().add(Arriba, BorderLayout.NORTH);
 		Arriba.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		JLabel lblRegistrarse = new JLabel("CAMBIAR CONTRASEÑA");
+		JLabel lblRegistrarse = new JLabel("CAMBIAR CONTRASENA");
 		lblRegistrarse.setFont(new Font("Dialog", Font.BOLD, 30));
 		Arriba.add(lblRegistrarse);
 		
@@ -48,11 +48,11 @@ public class CambiarContrasena extends JFrame {
 		
 		JLabel lblNewLabel = new JLabel("Nombre de usuario");
 		
-		JLabel lblContrasea = new JLabel("Nueva contraseña");
+		JLabel lblContrasea = new JLabel("Nueva contrasena");
 		
-		JLabel lblRepetirContrasea = new JLabel("Repetir N. contraseña");
+		JLabel lblRepetirContrasea = new JLabel("Repetir N. contrasena");
 		
-		JLabel lblCorreoEletrnico = new JLabel("Antigua contraseña");
+		JLabel lblCorreoEletrnico = new JLabel("Antigua contrasena");
 		
 		textField = new JTextField();
 		textField.setColumns(10);
@@ -74,7 +74,7 @@ public class CambiarContrasena extends JFrame {
 					ocultar();
 				}
 				else {
-					JOptionPane.showMessageDialog(null, "No ha sido posible cambiar la contraseña", "ERORR AL CAMBIAR CONTRASEÑA", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "No ha sido posible cambiar la contrasena", "ERORR AL CAMBIAR CONTRASENA", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});

@@ -14,10 +14,7 @@ public class App {
 		//Iniciar variables
 		identificarse = new Identificacion();
 		menu=new Menu();
-		arkanoid=new Arkanoid();
-		
-		
-		EME(); 
+		arkanoid=new Arkanoid(); 
 
 		//Mostrar pantalla identificacion
 		identificarse.setVisible(true);
@@ -51,7 +48,7 @@ public class App {
 	public static void EME() throws SQLException {
 		arkanoid.setVisible(false);
 
-    menu.setVisible(true);
+		menu.setVisible(true);
 		menu.setActivo(false);
 		
 		//Esperar a que se le de a jugar
