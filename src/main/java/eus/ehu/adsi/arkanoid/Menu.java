@@ -17,6 +17,7 @@ import javax.swing.border.EmptyBorder;
 
 public class Menu extends JFrame implements PropertyChangeListener {
 
+	private String nombreUsuario;
 	private JPanel contentPane;
 	private JButton btnJugar;
 	private JButton btnRanking;
@@ -214,6 +215,10 @@ public class Menu extends JFrame implements PropertyChangeListener {
 
 	public int getDificultad() {
 		return dificultad;
+	}
+	
+	public void setNombreUsuario(String nom) {
+		nombreUsuario=nom;
 	}
 
 }
